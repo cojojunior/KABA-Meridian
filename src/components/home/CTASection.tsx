@@ -8,7 +8,7 @@ export default function CTASection() {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   return (
-    <section className="relative overflow-hidden ">
+    <section className="relative overflow-hidden lg:py-2">
       {/* Background Video */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center">
@@ -77,10 +77,7 @@ export default function CTASection() {
           className="text-center max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
             Ready to Partner with a{" "}
-            <span className="text-gradient ">
-              Trusted Supplier
-            </span>
-            ?
+            <span className="text-gradient ">Trusted Supplier</span>?
           </h2>
           <p className="text-xl text-white/90 leading-relaxed mb-8">
             Contact us today for a competitive quotation and let us help you
@@ -119,15 +116,15 @@ export default function CTASection() {
             <a
               href="mailto:kabameridian@gmail.com"
               className="flex items-center gap-2 hover:text-white transition-colors">
-              <Mail className="h-4 w-4 text-[#05383f]" />
+              <Mail className="h-4 w-4 text-accent-300" />
               kabameridian@gmail.com
             </a>
             <span className="hidden sm:inline text-white/30">|</span>
             <a
-              href="tel:+233201234567"
+              href="tel:+420 771 259 254"
               className="flex items-center gap-2 hover:text-white transition-colors">
-              <Phone className="h-4 w-4 text-[#05383f]" />
-              +233 20 123 4567
+              <Phone className="h-4 w-4 text-accent-300" />
+              +420 771 259 254
             </a>
           </div>
         </motion.div>

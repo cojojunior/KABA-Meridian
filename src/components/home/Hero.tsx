@@ -37,7 +37,7 @@ export default function Hero() {
   }, [isDesktopOrTablet]);
 
   return (
-    <section className="relative min-h-[100vh] py-5 px-2 flex items-center overflow-hidden">
+    <section className="relative min-h-[90vh] lg:min-h-[40vh] px-2 lg:py-5 flex items-center overflow-hidden">
       {/* Background Video Container */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center">
@@ -113,9 +113,7 @@ export default function Hero() {
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
               One-Stop Industrial{" "}
-              <span className="text-gradient bg-">
-                Procurement Partner
-              </span>
+              <span className="text-gradient bg-">Procurement Partner</span>
             </h1>
 
             <p className="text-lg text-white/90 leading-relaxed mb-8 max-w-xl">
@@ -151,7 +149,7 @@ export default function Hero() {
             </div>
 
             <motion.div
-              className="flex flex-wrap gap-6 mt-8 pt-8 border-t border-white/10"
+              className="flex flex-wrap gap-6 mt-8 pt-8 border-t border-white/50"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.3 }}>
@@ -166,7 +164,7 @@ export default function Hero() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}>
-                  <item.icon className="h-5 w-5 text-[#05383f]" />
+                  <item.icon className="h-5 w-5 text-accent-300" />
                   <span>{item.label}</span>
                 </motion.div>
               ))}
@@ -218,7 +216,7 @@ export default function Hero() {
             exit={{
               opacity: 0,
               y: 20,
-              transition: { duration: 0.6, ease: "easeOut" },
+              transition: { duration: 0.3, ease: "easeOut" },
             }}
             transition={{
               duration: 0.6,

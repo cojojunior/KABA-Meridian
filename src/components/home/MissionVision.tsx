@@ -4,7 +4,7 @@ import { Section } from "@/components/ui/Section";
 
 export default function MissionVision() {
   return (
-    <Section background="white" className="py-5 px-2">
+    <Section background="white" className="py-5 px-2 lg:py-5">
       <div className="grid md:grid-cols-2 gap-8">
         <motion.div
           initial={{ opacity: 0, x: -30 }}
