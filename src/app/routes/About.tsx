@@ -32,7 +32,7 @@ export default function About() {
     <>
       {/* Hero Section with Background Image */}
       <section
-        className="relative py-20 sm:py-40 md:py-35 lg:py-35 overflow-hidden"
+        className="relative py-20 lg:py-50 md:py-35 lg:py-35 overflow-hidden"
         style={{
           backgroundImage: "url(/KB-ABOUT.jpg)",
           backgroundSize: "cover",
@@ -41,7 +41,7 @@ export default function About() {
         }}></section>
 
       {/* Content Section */}
-      <section className="py-5 md:py-5 bg-white">
+      <section className="py-5 md:py-5 lg:py-10 bg-white">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <motion.div
@@ -107,7 +107,7 @@ export default function About() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-10 md:py-24 bg-secondary-50">
+      <section className="py-5 lg:py-10 md:py-24 bg-secondary-50">
         <div className="container-custom">
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl font-bold text-secondary-900 mb-4">
