@@ -58,7 +58,7 @@ export default function Navbar() {
                 className="h-9 w-auto"
               />
               <div className="flex items-baseline">
-                <span className="text-[25px] font-corsiva text-primary-1 ml-1">
+                <span className="text-[25px] font-corsiva text-primary-600 ml-1">
                   Meridian
                 </span>
               </div>
@@ -180,10 +180,11 @@ export default function Navbar() {
                         kabameridian@gmail.com
                       </a>
                       <a
-                        href="tel:+233201234567"
+                        href="tel:+420 771 259 25"
                         className="flex items-center gap-3 text-sm text-secondary-600 hover:text-[#05383f] transition-colors">
                         <Phone className="h-4 w-4" />
-                        +233 20 123 4567
+                        +420 771 259 25 <br />
+                        +233 27 303 1729
                       </a>
                     </div>
                   </div>
