@@ -46,9 +46,6 @@
   --animate-slide-in-right: slideInRight 0.6s ease-out;
   --animate-pulse-slow: pulse 3s ease-in-out infinite;
   --animate-float: float 6s ease-in-out infinite;
-
-  @import "tailwindcss";
-
   --animate-gradient: gradient 3s ease infinite;
   --animate-pulse-slow: pulse 4s ease-in-out infinite;
 
