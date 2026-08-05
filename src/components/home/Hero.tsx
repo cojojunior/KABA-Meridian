@@ -37,7 +37,7 @@ export default function Hero() {
   }, [isDesktopOrTablet]);
 
   return (
-    <section className="relative min-h-[90vh] lg:min-h-[40vh] px-2 lg:py-5 flex items-center overflow-hidden">
+    <section className="relative min-h-[90vh] lg:min-h-[40vh] py-5 px-2 lg:py-5 flex items-center overflow-hidden">
       {/* Background Video Container */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center">
@@ -50,7 +50,7 @@ export default function Hero() {
               isVideoLoaded ? "opacity-100" : "opacity-0"
             }`}
             style={{
-              filter: "brightness(0.15) saturate(0.2) contrast(1.1)",
+              filter: "brightness(0.35) saturate(0.5) contrast(1.1)",
               width: "auto",
               height: "100%",
               maxWidth: "none",

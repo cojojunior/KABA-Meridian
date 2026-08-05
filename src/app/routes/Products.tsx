@@ -94,7 +94,7 @@ const products = [
 export default function Products() {
   return (
     <>
-      <Section background="gray" spacing="xl">
+      <Section background="gray" spacing="xl" className="py-10 px-2 lg:py-15">
         <div className="text-center max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

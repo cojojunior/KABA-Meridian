@@ -170,7 +170,7 @@ export default function Contact() {
       </Section>
 
       {/* Quote CTA */}
-      <Section background="primary" spacing="xl">
+      <Section background="primary" spacing="xl" className="py-5 lg:py-5">
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="text-3xl font-bold text-secondary-900 mb-4">
             Need a Quick Quote?
