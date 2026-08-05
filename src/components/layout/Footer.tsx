@@ -118,8 +118,8 @@ export default function Footer() {
               <div className="flex items-start gap-3">
                 <Phone className="h-5 w-5 text-primary-1 flex-shrink-0" />
                 <div>
-                  <div className="text-sm">+233 20 123 4567</div>
-                  <div className="text-sm">+233 24 123 4567</div>
+                  <div className="text-sm">+420 771 259 254</div>
+                  <div className="text-sm">+233 27 303 1729</div>
                 </div>
               </div>
               <div className="flex items-start gap-3">

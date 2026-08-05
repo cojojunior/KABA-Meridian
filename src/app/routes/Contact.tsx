@@ -7,8 +7,8 @@ import { Card, CardContent } from "@/components/ui/Card";
 export default function Contact() {
   return (
     <>
-      <Section background="gray" spacing="xl">
-        <div className="text-center max-w-4xl mx-auto">
+      <Section background="gray" spacing="xl" className="py-5 px-2 lg:py-15">
+        <div className="text-center max-w-4xl mx-auto ">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -118,8 +118,8 @@ export default function Contact() {
                       <h4 className="font-semibold text-secondary-900 mb-1">
                         Phone
                       </h4>
-                      <p className="text-secondary-600">+233 20 123 4567</p>
-                      <p className="text-secondary-600">+233 24 123 4567</p>
+                      <p className="text-secondary-600">+420 771 259 25</p>
+                      <p className="text-secondary-600">+233 27 303 1729</p>
                     </div>
                   </div>
                 </CardContent>

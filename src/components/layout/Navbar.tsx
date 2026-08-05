@@ -85,7 +85,7 @@ export default function Navbar() {
               ))}
             </div>
 
-            <div className=" lg:flex items-center gap-4">
+            <div className=" lg:flex items-center gap-4" hidden>
               <Link to="/contact">
                 <Button variant="primary">Request a Quote</Button>
               </Link>
