@@ -58,7 +58,7 @@ const industries = [
 export default function Industries() {
   return (
     <>
-      <Section background="gray" spacing="xl">
+      <Section background="gray" spacing="xl" className="py-10 px-2 lg:py-15">
         <div className="text-center max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -75,7 +75,7 @@ export default function Industries() {
         </div>
       </Section>
 
-      <Section background="white">
+      <Section background="white" className="py-5 px-2 lg:py-3">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {industries.map((industry, index) => (
             <motion.div
