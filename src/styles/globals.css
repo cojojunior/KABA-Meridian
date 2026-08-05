@@ -49,196 +49,187 @@
 
   @import "tailwindcss";
 
-  @theme {
-    /* ... existing theme configuration ... */
+  --animate-gradient: gradient 3s ease infinite;
+  --animate-pulse-slow: pulse 4s ease-in-out infinite;
 
-    --animate-gradient: gradient 3s ease infinite;
-    --animate-pulse-slow: pulse 4s ease-in-out infinite;
-
-    @keyframes gradient {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
     }
-
-    @keyframes pulse {
-      0%,
-      100% {
-        opacity: 0.3;
-      }
-      50% {
-        opacity: 0.6;
-      }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
     }
   }
 
-  @layer utilities {
-    .animate-gradient {
-      animation: gradient 3s ease infinite;
-      background-size: 200% auto;
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 0.3;
     }
-
-    .animate-pulse-slow {
-      animation: pulse 4s ease-in-out infinite;
+    50% {
+      opacity: 0.6;
     }
+  }
+}
 
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-      }
-      100% {
-        opacity: 1;
-      }
+@layer utilities {
+  .animate-gradient {
+    animation: gradient 3s ease infinite;
+    background-size: 200% auto;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
     }
-
-    @keyframes slideUp {
-      0% {
-        transform: translateY(30px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    @keyframes slideInLeft {
-      0% {
-        transform: translateX(-30px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
-    @keyframes slideInRight {
-      0% {
-        transform: translateX(30px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
-    @keyframes float {
-      0%,
-      100% {
-        transform: translateY(0px);
-      }
-      50% {
-        transform: translateY(-10px);
-      }
+    100% {
+      opacity: 1;
     }
   }
 
-  @layer base {
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+  @keyframes slideUp {
+    0% {
+      transform: translateY(30px);
+      opacity: 0;
     }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: var(--font-family-sans);
-      color: var(--color-secondary-900);
-      background-color: white;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-      font-weight: 700;
-      line-height: 1.2;
+    100% {
+      transform: translateY(0);
+      opacity: 1;
     }
   }
 
-  @layer components {
+  @keyframes slideInLeft {
+    0% {
+      transform: translateX(-30px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInRight {
+    0% {
+      transform: translateX(30px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-family-sans);
+    color: var(--color-secondary-900);
+    background-color: white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+    line-height: 1.2;
+  }
+}
+
+@layer components {
+  .container-custom {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
     .container-custom {
-      max-width: 1280px;
-      margin-left: auto;
-      margin-right: auto;
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-
-    @media (min-width: 640px) {
-      .container-custom {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .container-custom {
-        padding-left: 2rem;
-        padding-right: 2rem;
-      }
-    }
-
-    .gradient-primary {
-      background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
-    }
-
-    .gradient-hero {
-      background: linear-gradient(
-        135deg,
-        #0f172a 0%,
-        #1e293b 50%,
-        #0c4a6e 100%
-      );
-    }
-
-    .gradient-accent {
-      background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
-    }
-
-    .text-gradient {
-      background: linear-gradient(135deg, #0ea5e9 0%, #f97316 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .shadow-card {
-      box-shadow:
-        0 4px 6px -1px rgba(0, 0, 0, 0.1),
-        0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    }
-
-    .shadow-card-hover {
-      box-shadow:
-        0 20px 25px -5px rgba(0, 0, 0, 0.1),
-        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
     }
   }
 
-  @layer utilities {
-    .text-balance {
-      text-wrap: balance;
+  @media (min-width: 1024px) {
+    .container-custom {
+      padding-left: 2rem;
+      padding-right: 2rem;
     }
+  }
 
-    .font-corsiva {
-      font-family: "Monotype Corsiva", "Brush Script MT", cursive;
-      font-style: italic;
-    }
+  .gradient-primary {
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+  }
+
+  .gradient-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0c4a6e 100%);
+  }
+
+  .gradient-accent {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #0ea5e9 0%, #f97316 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .shadow-card {
+    box-shadow:
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .shadow-card-hover {
+    box-shadow:
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .font-corsiva {
+    font-family: "Monotype Corsiva", "Brush Script MT", cursive;
+    font-style: italic;
   }
 }
