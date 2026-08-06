@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Mail, Lock, LogIn, AlertCircle } from "lucide-react";
+import { Mail, Lock, LogIn, AlertCircle, UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { supabase } from "@/lib/supabase";
 
@@ -26,7 +26,6 @@ export default function AdminLogin() {
       if (error) throw error;
 
       if (data.user) {
-        // Check if user is admin (you can add a role check here)
         navigate("/admin");
       }
     } catch (err: any) {
@@ -50,7 +49,6 @@ export default function AdminLogin() {
             <img src="/KABA.svg" alt="KABA Meridian" className="h-12 w-12" />
             <div>
               <span className="text-2xl font-corsiva text-primary-1">
-                {" "}
                 Meridian
               </span>
             </div>
@@ -128,11 +126,23 @@ export default function AdminLogin() {
           </form>
 
           <div className="mt-6 text-center">
-            <a
-              href="/"
+            <p className="text-white/50 text-sm">
+              Don't have an account?{" "}
+              <Link
+                to="/admin/signup"
+                className="text-primary-400 hover:text-primary-300 transition-colors inline-flex items-center gap-1">
+                <UserPlus className="h-4 w-4" />
+                Create Account
+              </Link>
+            </p>
+          </div>
+
+          <div className="mt-4 text-center">
+            <Link
+              to="/"
               className="text-white/60 hover:text-white transition-colors text-sm">
               ← Back to Website
-            </a>
+            </Link>
           </div>
         </div>
       </motion.div>
