@@ -1,78 +1,113 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  Send,
+  FileText,
+  
+} from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 import { Card, CardContent } from "@/components/ui/Card";
 import { useState } from "react";
+import {supabase } from "@/lib/supabase";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
+    company: "",
+    product_interest: "",
     message: "",
   });
 
   const [isSending, setIsSending] = useState(false);
   const [isSent, setIsSent] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    if (error) setError(null);
   };
 
-  // Handle Email redirect with form data
-  const handleSendEmail = () => {
-    const subject = `Procurement Inquiry from ${formData.name || "Customer"}`;
-    const body = `Name: ${formData.name || "Not provided"}
-Email: ${formData.email || "Not provided"}
-Phone: ${formData.phone || "Not provided"}
+  // Send quotation to Supabase
+  const sendToSupabase = async (data: typeof formData) => {
+    try {
+      const { error: supabaseError } = await supabase
+        .from("quotations")
+        .insert([
+          {
+            name: data.name,
+            email: data.email,
+            phone: data.phone || null,
+            company: data.company || null,
+            product_interest: data.product_interest || null,
+            message: data.message,
+            status: "pending",
+          },
+        ]);
 
-Message:
-${formData.message || "I would like to request a quote for industrial procurement."}
-
----
-This message was sent from the KABA Meridian website contact form.`;
-
-    const encodedSubject = encodeURIComponent(subject);
-    const encodedBody = encodeURIComponent(body);
-    const emailUrl = `mailto:kabameridian@gmail.com?subject=${encodedSubject}&body=${encodedBody}`;
-    window.location.href = emailUrl;
+      if (supabaseError) throw supabaseError;
+      return true;
+    } catch (err) {
+      console.error("Supabase error:", err);
+      throw err;
+    }
   };
 
   // Handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Validate form
     if (!formData.name || !formData.email || !formData.message) {
-      alert("Please fill in all required fields.");
+      setError("Please fill in all required fields.");
+      return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setError("Please enter a valid email address.");
       return;
     }
 
     setIsSending(true);
+    setError(null);
 
-    // Simulate sending delay for better UX
-    setTimeout(() => {
-      handleSendEmail();
-      setIsSending(false);
+    try {
+      // Send to Supabase
+      await sendToSupabase(formData);
+
       setIsSent(true);
 
-      // Reset form after sending
+      // Reset form
       setFormData({
         name: "",
         email: "",
         phone: "",
+        company: "",
+        product_interest: "",
         message: "",
       });
 
-      // Reset sent status after 5 seconds
       setTimeout(() => {
         setIsSent(false);
       }, 5000);
-    }, 500);
+    } catch (err) {
+      setError("Failed to send quotation request. Please try again.");
+      console.error("Submission error:", err);
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -85,9 +120,11 @@ This message was sent from the KABA Meridian website contact form.`;
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              Request a Quote
+            </h1>
             <p className="text-xl leading-relaxed">
-              Get in touch with us for all your industrial procurement needs.
+              Get a competitive quotation for your industrial procurement needs.
             </p>
           </motion.div>
         </div>
@@ -95,15 +132,45 @@ This message was sent from the KABA Meridian website contact form.`;
 
       <Section background="white">
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Form */}
+          {/* Quotation Form */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}>
             <h2 className="text-2xl font-bold text-secondary-900 mb-6">
-              Send Us a Message
+              Request a Quote
             </h2>
+            <p className="text-secondary-600 mb-6">
+              Fill in the form below and we'll get back to you with a
+              competitive quotation for your industrial products.
+            </p>
+
+            {isSent && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg flex items-start gap-3">
+                <FileText className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-green-800 font-medium">
+                    Quotation Request Sent!
+                  </p>
+                  <p className="text-green-600 text-sm">
+                    We'll get back to you shortly.
+                  </p>
+                </div>
+              </motion.div>
+            )}
+
+            {error && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start gap-3">
+                <div className="text-red-600 text-sm">{error}</div>
+              </motion.div>
+            )}
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
@@ -115,12 +182,13 @@ This message was sent from the KABA Meridian website contact form.`;
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 rounded-lg border border-secondary-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors"
+                  className="w-full px-4 py-3 rounded-lg border border-secondary-300 focus:border-[#05383f] focus:ring-2 focus:ring-[#05383f]/20 transition-colors"
                   placeholder="Enter your full name"
                   required
                   disabled={isSending}
                 />
               </div>
+
               <div>
                 <label className="block text-sm font-medium text-secondary-700 mb-2">
                   Email Address *
@@ -130,12 +198,13 @@ This message was sent from the KABA Meridian website contact form.`;
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 rounded-lg border border-secondary-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors"
+                  className="w-full px-4 py-3 rounded-lg border border-secondary-300 focus:border-[#05383f] focus:ring-2 focus:ring-[#05383f]/20 transition-colors"
                   placeholder="Enter your email address"
                   required
                   disabled={isSending}
                 />
               </div>
+
               <div>
                 <label className="block text-sm font-medium text-secondary-700 mb-2">
                   Phone Number
@@ -145,26 +214,66 @@ This message was sent from the KABA Meridian website contact form.`;
                   name="phone"
                   value={formData.phone}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 rounded-lg border border-secondary-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors"
+                  className="w-full px-4 py-3 rounded-lg border border-secondary-300 focus:border-[#05383f] focus:ring-2 focus:ring-[#05383f]/20 transition-colors"
                   placeholder="Enter your phone number"
                   disabled={isSending}
                 />
               </div>
+
               <div>
                 <label className="block text-sm font-medium text-secondary-700 mb-2">
-                  Message *
+                  Company Name
+                </label>
+                <input
+                  type="text"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 rounded-lg border border-secondary-300 focus:border-[#05383f] focus:ring-2 focus:ring-[#05383f]/20 transition-colors"
+                  placeholder="Enter your company name"
+                  disabled={isSending}
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-secondary-700 mb-2">
+                  Product Interest
+                </label>
+                <select
+                  name="product_interest"
+                  value={formData.product_interest}
+                  onChange={handleInputChange}
+                  className="w-full px-4 py-3 rounded-lg border border-secondary-300 focus:border-[#05383f] focus:ring-2 focus:ring-[#05383f]/20 transition-colors bg-white"
+                  disabled={isSending}>
+                  <option value="">Select a product category...</option>
+                  <option value="PPE">
+                    Personal Protective Equipment (PPE)
+                  </option>
+                  <option value="Consumables">Industrial Consumables</option>
+                  <option value="Tools">Industrial Tools</option>
+                  <option value="Office">Office Supplies</option>
+                  <option value="Plumbing">Plumbing Materials</option>
+                  <option value="Workwear">Workwear & Uniforms</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-secondary-700 mb-2">
+                  Message / Requirements *
                 </label>
                 <textarea
                   name="message"
                   rows={5}
                   value={formData.message}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 rounded-lg border border-secondary-300 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 transition-colors"
-                  placeholder="Tell us about your procurement needs"
+                  className="w-full px-4 py-3 rounded-lg border border-secondary-300 focus:border-[#05383f] focus:ring-2 focus:ring-[#05383f]/20 transition-colors"
+                  placeholder="Tell us about your procurement needs and requirements"
                   required
                   disabled={isSending}
                 />
               </div>
+
               <Button
                 type="submit"
                 variant="primary"
@@ -178,16 +287,22 @@ This message was sent from the KABA Meridian website contact form.`;
                   </>
                 ) : isSent ? (
                   <>
-                    <span>✓</span>
-                    Sent Successfully!
+                    <FileText className="h-5 w-5" />
+                    Request Sent!
                   </>
                 ) : (
                   <>
-                    Send Message
                     <Send className="h-5 w-5" />
+                    Request Quote
                   </>
                 )}
               </Button>
+              <p className="text-xs text-secondary-500 text-center mt-4">
+                <span className="inline-flex items-center gap-1">
+                  <FileText className="h-3 w-3" />
+                  Your quotation request will be saved and reviewed by our team.
+                </span>
+              </p>
             </form>
           </motion.div>
 
@@ -300,8 +415,8 @@ This message was sent from the KABA Meridian website contact form.`;
           </p>
           <a href="mailto:kabameridian@gmail.com">
             <Button variant="accent" size="lg" className="gap-2">
+              <FileText className="h-5 w-5" />
               Request a Quote
-              <Send className="h-5 w-5" />
             </Button>
           </a>
         </div>
