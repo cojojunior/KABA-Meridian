@@ -12,6 +12,7 @@ import {
   CheckCircle,
   Clock,
   XCircle,
+  Trash2,
 } from "lucide-react";
 import supabase from "@/lib/supabase";
 import { Card, CardContent } from "@/components/ui/Card";
@@ -36,6 +37,7 @@ export default function AdminDashboard() {
   const [selectedQuotation, setSelectedQuotation] = useState<Quotation | null>(
     null,
   );
+  const [deletingId, setDeletingId] = useState<number | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -82,6 +84,52 @@ export default function AdminDashboard() {
     } catch (error: any) {
       console.error("Error updating status:", error);
       alert("Failed to update status.");
+    }
+  };
+
+  // DELETE FUNCTION - Fully implemented
+  const deleteQuotation = async (id: number) => {
+    // Show confirmation dialog
+    if (
+      !confirm(
+        "Are you sure you want to delete this quotation request? This action cannot be undone.",
+      )
+    ) {
+      return;
+    }
+
+    setDeletingId(id);
+    setError(null);
+
+    try {
+      console.log("Deleting quotation with ID:", id);
+
+      const { error } = await supabase.from("quotations").delete().eq("id", id);
+
+      if (error) {
+        console.error("Supabase delete error:", error);
+        setError(`Failed to delete: ${error.message}`);
+        throw error;
+      }
+
+      console.log("Quotation deleted successfully from Supabase");
+
+      // Remove from local state
+      setQuotations((prev) => prev.filter((q) => q.id !== id));
+
+      // If the deleted item was selected, clear selection
+      if (selectedQuotation && selectedQuotation.id === id) {
+        setSelectedQuotation(null);
+      }
+
+      // Show success message
+      alert("Quotation request deleted successfully!");
+    } catch (error: any) {
+      console.error("Error deleting quotation:", error);
+      setError(error.message || "Failed to delete quotation.");
+      alert("Failed to delete quotation. Please try again.");
+    } finally {
+      setDeletingId(null);
     }
   };
 
@@ -175,17 +223,10 @@ export default function AdminDashboard() {
             <div className="flex items-center gap-3">
               <img src="/KABA.svg" alt="Logo" className="h-10 w-10" />
               <div>
-                <span className="text-xl font-bold text-secondary-900">
-                  KABA
-                </span>
                 <span className="text-xl font-corsiva text-[#05383f]">
-                  {" "}
                   Meridian
                 </span>
               </div>
-              <span className="ml-4 px-3 py-1 bg-[#05383f]/10 text-[#05383f] text-sm rounded-full font-medium">
-                Quotations
-              </span>
             </div>
             <div className="flex items-center gap-3">
               <Button
@@ -379,6 +420,25 @@ export default function AdminDashboard() {
                         )}
                       </div>
                     </div>
+                    {/* Delete Button on List */}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        deleteQuotation(quotation.id);
+                      }}
+                      disabled={deletingId === quotation.id}
+                      className={`p-2 rounded-lg transition-colors ml-4 flex-shrink-0 ${
+                        deletingId === quotation.id
+                          ? "bg-gray-100 text-gray-400 cursor-not-allowed"
+                          : "hover:bg-red-100 text-red-500 hover:text-red-700"
+                      }`}
+                      title="Delete">
+                      {deletingId === quotation.id ? (
+                        <div className="animate-spin rounded-full h-4 w-4 border-2 border-gray-400 border-t-transparent"></div>
+                      ) : (
+                        <Trash2 className="h-4 w-4" />
+                      )}
+                    </button>
                   </div>
                 </motion.div>
               ))}
@@ -518,7 +578,7 @@ export default function AdminDashboard() {
                       }}
                       className="gap-2">
                       <FileText className="h-4 w-4" />
-                      Mark as Responded{" "}
+                      Mark as Responded
                     </Button>
                   )}
                   {selectedQuotation.status === "responded" && (
@@ -538,13 +598,19 @@ export default function AdminDashboard() {
                     variant="destructive"
                     size="sm"
                     onClick={() => {
-                      if (confirm("Delete this quotation request?")) {
-                        // Add delete function
-                        setSelectedQuotation(null);
-                      }
+                      deleteQuotation(selectedQuotation.id);
+                      setSelectedQuotation(null);
                     }}
-                    className="gap-2">
-                    Delete
+                    className="gap-2"
+                    disabled={deletingId === selectedQuotation.id}>
+                    {deletingId === selectedQuotation.id ? (
+                      <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
+                    ) : (
+                      <>
+                        <Trash2 className="h-4 w-4" />
+                        Delete
+                      </>
+                    )}
                   </Button>
                 </div>
               </div>

@@ -49,8 +49,7 @@ export default function AdminLogin() {
           <div className="flex items-center justify-center gap-3 mb-4">
             <img src="/KABA.svg" alt="KABA Meridian" className="h-12 w-12" />
             <div>
-              <span className="text-2xl font-bold text-white">KABA</span>
-              <span className="text-2xl font-corsiva text-[#05383f]">
+              <span className="text-2xl font-corsiva text-primary-1">
                 {" "}
                 Meridian
               </span>
