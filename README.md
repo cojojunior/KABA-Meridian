@@ -1,310 +1,319 @@
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-
-
 # KABA Meridian - One-Stop Industrial Procurement Partner
 
-![KABA Meridian Logo](./public/KABA.svg)
+![KABA Meridian Logo](public/KABA.svg)
 
-## Overview
+[![Netlify Status](https://api.netlify.com/api/v1/badges/your-badge-id/deploy-status)](https://app.netlify.com/sites/kbmeridian/deploys)
+[![React Version](https://img.shields.io/badge/React-19.2.8-61dafb.svg)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6.0.3-3178c6.svg)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.3.3-38bdf8.svg)](https://tailwindcss.com/)
+[![Vite](https://img.shields.io/badge/Vite-8.2.0-646cff.svg)](https://vitejs.dev/)
+[![Supabase](https://img.shields.io/badge/Supabase-3ecf8e.svg)](https://supabase.com/)
+[![Netlify](https://img.shields.io/badge/Netlify-00c7b7.svg)](https://netlify.com/)
 
-KABA Meridian is a professional website for an industrial procurement company based in Ghana. The website showcases the company's products, services, and industries served, providing a modern and responsive user experience.
+## 📋 Overview
 
-## Features
+KABA Meridian is a modern, responsive web application for an industrial procurement company based in Ghana. The platform serves as a comprehensive digital storefront showcasing the company's products, services, and industries served, establishing them as a trusted one-stop industrial procurement partner.
 
-- 🎥 **Dynamic Hero Section** - Video background with animated elements
-- 📱 **Fully Responsive** - Optimized for desktop, tablet, and mobile devices
-- 🎨 **Modern UI/UX** - Clean design with smooth animations
-- 📄 **Comprehensive Pages** - Home, About, Products, Industries, Contact
-- 🎯 **Interactive Elements** - Hover effects, animations, and transitions
-- 🎬 **Video Backgrounds** - Engaging video backgrounds in hero and CTA sections
+**Live Demo**: [https://kbmeridian.netlify.app](https://kbmeridian.netlify.app)
 
-## Tech Stack
+## ✨ Features
 
-- **React 19** - UI Framework
-- **TypeScript** - Type Safety
-- **Tailwind CSS 4** - Styling
-- **Vite 8** - Build Tool
-- **Framer Motion** - Animations
-- **Lucide React** - Icons
-- **React Icons** - Additional Icons
+### 🏠 Public Website
+- **Dynamic Hero Section**: Video background with cinematic effects and animations
+- **About Preview**: Company introduction with feature cards
+- **Products Showcase**: 6 product categories with images and descriptions
+- **Industries Served**: 6 industry sectors with visual cards
+- **Why Choose Us**: 6 key benefits with icons
+- **Mission & Vision**: Company mission, vision, and commitment
+- **CTA Section**: Call-to-action with video background
+- **Contact Page**: Form with Supabase integration and email forwarding
 
-## Installation
+### 🔐 Admin Panel
+- **Secure Authentication**: Email/password login with Supabase Auth
+- **Dashboard**: Message statistics and recent messages preview
+- **Message Management**: View, search, filter, and delete messages
+- **Status Tracking**: Unread, Read, Replied status indicators
+- **Reply via Email**: Quick reply to messages
+- **Protected Routes**: Admin-only access
 
-1. Clone the repository:
-```bash
-git clone https://github.com/your-username/kaba-meridian.git
-cd kaba-meridian
-Install dependencies:
+### 📱 Responsive Design
+- Mobile-first approach
+- Optimized for all screen sizes
+- Touch-friendly interactions
+- Smooth animations and transitions
 
-bash
-npm install
-Start the development server:
+## 🛠️ Tech Stack
 
-bash
-npm run dev
-Build for production:
+### Frontend
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| React | 19.2.8 | UI Framework |
+| TypeScript | 6.0.3 | Type Safety |
+| Tailwind CSS | 4.3.3 | Styling |
+| Vite | 8.2.0 | Build Tool |
+| Framer Motion | Latest | Animations |
+| Lucide React | Latest | Icons |
 
-bash
-npm run build
-Project Structure
-text
+### Backend & Database
+| Technology | Purpose |
+|------------|---------|
+| Supabase | Database & Authentication |
+| Supabase Auth | Admin Authentication |
+| Supabase RLS | Row Level Security |
+
+### Hosting & Deployment
+| Service | Purpose |
+|---------|---------|
+| Netlify | Hosting & CI/CD |
+| Netlify Functions | Serverless Functions |
+
+## 📁 Project Structure
 kaba-meridian/
 ├── public/
-│   ├── KABA.svg          # Logo
-│   ├── KB-About.jpg      # About background image
-│   ├── herovid.mp4       # Hero video background
-│   └── favicon.ico
+│ ├── _redirects # Netlify redirects
+│ ├── KABA.svg # Company logo
+│ ├── KB-About.jpg # About section background
+│ ├── herovid.mp4 # Hero video background
+│ └── *.jpg # Product and industry images
 ├── src/
-│   ├── app/
-│   │   ├── layouts/      # Layout components
-│   │   ├── routes/       # Page components
-│   │   └── App.tsx       # Main app component
-│   ├── components/
-│   │   ├── home/         # Homepage components
-│   │   ├── layout/       # Layout components
-│   │   └── ui/           # Reusable UI components
-│   ├── styles/
-│   │   └── globals.css   # Global styles
-│   ├── hooks/            # Custom hooks
-│   ├── lib/              # Utilities
-│   ├── types/            # TypeScript types
-│   └── main.tsx          # Entry point
+│ ├── app/
+│ │ ├── layouts/
+│ │ │ └── MainLayout.tsx
+│ │ ├── routes/
+│ │ │ ├── public/
+│ │ │ │ ├── Home.tsx
+│ │ │ │ ├── About.tsx
+│ │ │ │ ├── Products.tsx
+│ │ │ │ ├── Industries.tsx
+│ │ │ │ ├── Contact.tsx
+│ │ │ │ └── NotFound.tsx
+│ │ │ └── admin/
+│ │ │ ├── AdminLogin.tsx
+│ │ │ ├── AdminDashboard.tsx
+│ │ │ └── AdminMessages.tsx
+│ │ └── App.tsx
+│ ├── components/
+│ │ ├── admin/
+│ │ │ └── ProtectedRoute.tsx
+│ │ ├── home/
+│ │ │ ├── Hero.tsx
+│ │ │ ├── AboutPreview.tsx
+│ │ │ ├── ProductsSection.tsx
+│ │ │ ├── IndustriesSection.tsx
+│ │ │ ├── WhyChooseUs.tsx
+│ │ │ ├── MissionVision.tsx
+│ │ │ └── CTASection.tsx
+│ │ ├── layout/
+│ │ │ ├── Navbar.tsx
+│ │ │ ├── Footer.tsx
+│ │ │ └── ScrollToTop.tsx
+│ │ └── ui/
+│ │ ├── Button.tsx
+│ │ ├── Card.tsx
+│ │ ├── Container.tsx
+│ │ └── Section.tsx
+│ ├── lib/
+│ │ ├── supabase.ts
+│ │ └── utils.ts
+│ ├── styles/
+│ │ └── globals.css
+│ ├── types/
+│ │ └── index.ts
+│ ├── main.tsx
+│ └── vite-env.d.ts
 ├── index.html
 ├── package.json
 ├── vite.config.ts
 ├── tsconfig.json
 ├── tailwind.config.js
-└── README.md
-Color Palette
-Primary: #05383f (Dark Teal/Green)
+├── postcss.config.js
+├── netlify.toml
+└── .env.example
 
-Secondary: #0f172a (Dark Blue)
+text
 
-Accent: #0ea5e9 (Sky Blue)
+## 🚀 Getting Started
 
-Pages
-Home - Hero section, about preview, products, industries, why choose us, mission/vision, CTA
+### Prerequisites
 
-About - Company information, values
+- Node.js (v18 or higher)
+- npm (v9 or higher)
+- Supabase account (for database)
+- Netlify account (for deployment)
 
-Products - Product categories and details
+### Installation
 
-Industries - Industries served
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/kaba-meridian.git
+   cd kaba-meridian
+Install dependencies
 
-Contact - Contact form and information
+bash
+npm install
+Set up environment variables
 
-Browser Support
-Chrome (latest)
+bash
+cp .env.example .env
+Edit .env and add your Supabase credentials:
 
-Firefox (latest)
 
-Safari (latest)
+## env
+-  VITE_SUPABASE_URL=your_supabase_url
+  VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+  VITE_APP_NAME=KABA Meridian
+  VITE_APP_EMAIL=kabameridian@gmail.com
+  VITE_APP_PHONE=+233 20 123 4567
+  VITE_APP_ADDRESS=Accra, Ghana
+  Set up Supabase
 
-Edge (latest)
+-  Create a Supabase project
+  Create the messages table using the SQL in supabase/schema.sql
+  Enable Email authentication
+  Configure RLS policies
 
-Contributing
+Start development server
+
+bash
+npm run dev
+The app will be available at http://localhost:5173
+
+Build for production
+
+bash
+npm run build
+🗄️ Database Schema
+Messages Table
+## sql {
+- CREATE TABLE messages (
+  id BIGSERIAL PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(50),
+  message TEXT NOT NULL,
+  status VARCHAR(50) DEFAULT 'unread',
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+}
+
+
+-  RLS Policies
+  sql
+  -- Allow public to insert messages
+  CREATE POLICY "Allow public to insert messages" ON messages
+    FOR INSERT TO public WITH CHECK (true);
+
+  -- Allow authenticated users to view messages
+  CREATE POLICY "Allow authenticated users to view messages" ON messages
+    FOR SELECT TO authenticated USING (true);
+    
+
+
+
+-  -- Allow authenticated users to update messages
+  CREATE POLICY "Allow authenticated users to update messages" ON messages
+    FOR UPDATE TO authenticated USING (true) WITH CHECK (true);
+  🎨 Design System
+  Color Palette
+  Name	Hex Code	Usage
+  Brand Primary	#05383f	Buttons, headings, accents
+  Brand Dark	#062c32	Hover states, dark backgrounds
+  Brand Light	#0a4a52	Gradients, secondary elements
+  Secondary	#0f172a	Dark backgrounds, footer
+  White	#ffffff	Text, cards, backgrounds
+  Typography
+  Primary Font: Inter (Google Fonts)
+
+Special Font: Monotype Corsiva Italic (for "Meridian" and "Ghana")
+
+-  `📱 Responsive Breakpoints
+  Breakpoint	Width	Layout
+  Mobile	< 640px	Single column
+  Tablet	640px - 1024px	2-column grid
+  Desktop	> 1024px	Full 3-column grid
+  🚢 Deployment
+  Netlify Deployment
+  Connect to Netlify
+
+  Log in to Netlify
+
+  Click "Add new site" → "Import an existing project"
+
+  Connect your GitHub repository
+
+  Configure build settings
+
+  Build command: npm run build
+
+  Publish directory: dist
+
+  Set environment variables
+
+  Add all variables from .env
+
+  Deploy`
+
+Netlify will automatically deploy on push to main branch
+
+Manual Deployment
+bash
+# Build the project
+npm run build
+
+# Install Netlify CLI
+npm install -g netlify-cli
+
+# Deploy
+netlify deploy --prod --dir=dist
+🔧 Available Scripts
+Script	Description
+npm run dev	Start development server
+npm run build	Build for production
+npm run preview	Preview production build
+npm run lint	Run ESLint
+npm run deploy	Deploy to Netlify
+🧪 Testing
+bash
+# Run tests (coming soon)
+npm run test
+
+# Run tests with coverage
+npm run test:coverage
+🤝 Contributing
 Fork the repository
 
-Create your feature branch (git checkout -b feature/amazing-feature)
+Create your feature branch: git checkout -b feature/amazing-feature
 
-Commit your changes (git commit -m 'Add some amazing feature')
+Commit your changes: git commit -m 'Add amazing feature'
 
-Push to the branch (git push origin feature/amazing-feature)
+Push to the branch: git push origin feature/amazing-feature
 
 Open a Pull Request
 
-License
-This project is proprietary and confidential.
+📄 License
+This project is proprietary and confidential. All rights reserved.
 
-Contact
+🙏 Acknowledgments
+React - UI Framework
+
+Tailwind CSS - Styling
+
+Supabase - Database & Authentication
+
+Netlify - Hosting
+
+Framer Motion - Animations
+
+Lucide - Icons
+
+📞 Contact
 Email: kabameridian@gmail.com
 
 Phone: +233 20 123 4567
 
+Website: https://kbmeridian.netlify.app
+
 Location: Accra, Ghana
 
-Built with ❤️ by the KABA Meridian Team
-
-text
-
-## Step 4: Push to GitHub
-
-### Option A: Push to a New Repository
-
-```bash
-# Add all files
-git add .
-
-# Commit changes
-git commit -m "Initial commit: KABA Meridian website"
-
-# Add remote repository (replace with your actual repo URL)
-git remote add origin https://github.com/your-username/kaba-meridian.git
-
-# Push to GitHub
-git push -u origin main
-Option B: If you have an existing repository
-bash
-# Add all files
-git add .
-
-# Commit changes
-git commit -m "Update: KABA Meridian website with video backgrounds"
-
-# Push to GitHub
-git push origin main
-Option C: If you need to use a different branch
-bash
-# Create and switch to a new branch
-git checkout -b main
-
-# Add all files
-git add .
-
-# Commit changes
-git commit -m "Initial commit: KABA Meridian website"
-
-# Add remote repository
-git remote add origin https://github.com/your-username/kaba-meridian.git
-
-# Push to GitHub
-git push -u origin main
-Step 5: Create GitHub Repository via Command Line
-If you haven't created the repository on GitHub yet, you can use the GitHub CLI:
-
-bash
-# Install GitHub CLI (if not installed)
-brew install gh  # macOS
-# or
-winget install --id GitHub.cli  # Windows
-
-# Authenticate
-gh auth login
-
-# Create repository
-gh repo create kaba-meridian --public --source=. --remote=origin --push
-Step 6: Verify Your Push
-Go to https://github.com/your-username/kaba-meridian
-
-Check that all files are uploaded
-
-Verify the README renders correctly
-
-Check the project structure
-
-Step 7: Add a License (Optional)
-Create a LICENSE file if you want to open-source your project:
-
-bash
-# MIT License
-echo "MIT License" > LICENSE
-Common Git Commands Cheat Sheet
-bash
-# Check status
-git status
-
-# View changes
-git diff
-
-# Add specific files
-git add src/components/home/Hero.tsx
-
-# Add all files
-git add .
-
-# Commit with message
-git commit -m "Your commit message"
-
-# Push to GitHub
-git push origin main
-
-# Pull from GitHub
-git pull origin main
-
-# View branches
-git branch
-
-# Create new branch
-git checkout -b feature-name
-
-# Switch branch
-git checkout branch-name
-
-# Merge branch
-git merge feature-name
-# KABA-Meridian
+```````
