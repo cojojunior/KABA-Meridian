@@ -104,10 +104,7 @@ This message was sent from the KABA Meridian website contact form.`;
             <h2 className="text-2xl font-bold text-secondary-900 mb-6">
               Send Us a Message
             </h2>
-            <p className="text-secondary-600 mb-6">
-              Fill in the form below and we'll get back to you promptly. Your
-              message will be sent directly to kabameridian@gmail.com
-            </p>
+
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-secondary-700 mb-2">
