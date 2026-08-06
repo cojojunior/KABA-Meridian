@@ -33,7 +33,7 @@ const features = [
 export default function AboutPreview() {
   return (
     <section
-      className="relative py-6 sm:py-5 md:py-10 lg:py-10 overflow-hidden"
+      className="relative py-10 sm:py-5 md:py-10 lg:py-10 overflow-hidden"
       style={{
         backgroundImage: "url(/about.jpg)",
         backgroundSize: "cover",

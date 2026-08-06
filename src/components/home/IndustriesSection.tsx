@@ -39,7 +39,7 @@ const industries = [
 
 export default function IndustriesSection() {
   return (
-    <Section background="white" className="py-5 px-2 lg:py-3 md:py-5 md:px-2">
+    <Section background="white" className="py-5 px-2 lg:py-10 md:py-5 md:px-5">
       <div className="text-center mb-12">
         <h2 className="text-sm font-semibold text-accent-300 uppercase tracking-wider">
           Industries We Serve
@@ -79,8 +79,8 @@ export default function IndustriesSection() {
       </div>
 
       <div className="text-center mt-12">
-        <p className="text-secondary-600 mb-4">
-          Plus commercial and industrial businesses across Ghana.
+        <p className="text-primary-600 mb-4">
+          Commercial and industrial businesses across Ghana.
         </p>
         <Link to="/industries">
           <Button variant="outline" size="lg" className="gap-2">

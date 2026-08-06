@@ -57,7 +57,7 @@ const reasons = [
 
 export default function WhyChooseUs() {
   return (
-    <Section background="gray" className="py-5 px-2 lg:py-5 md:py-10">
+    <Section background="gray" className="py-5 px-2 lg:py-10 md:py-10">
       <div className="text-center mb-12">
         <h2 className="text-sm font-semibold text-accent-400 uppercase tracking-wider">
           Why Choose Us
