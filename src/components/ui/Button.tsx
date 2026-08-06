@@ -10,11 +10,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "primary", size = "md", ...props }, ref) => {
     const variants = {
       primary:
-        "bg-accent-600 text-white hover:bg-accent-500 focus:ring-primary-1 shadow-lg hover:shadow-xl",
+        "bg-accent-400 text-white hover:bg-accent-500 focus:ring-primary-1 shadow-lg hover:shadow-xl",
       secondary:
-        "bg-secondary-800 text-white hover:bg-accent-500 focus:ring-secondary-500",
+        "bg-secondary-800 text-white hover:bg-accent-400 focus:ring-secondary-500",
       accent:
-        "bg-accent-500 text-white hover:bg-accent-600 focus:ring-accent-500 shadow-lg hover:shadow-xl",
+        "bg-accent-500 text-white hover:bg-accent-400 focus:ring-accent-500 shadow-lg hover:shadow-xl",
       outline:
         "border-2 border-primary-600 text-primary-600 hover:border-accent-200 focus:ring-primary-500",
       ghost:
