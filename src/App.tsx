@@ -1,15 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import MainLayout from "./layouts/MainLayout";
-import Home from "./routes/Home";
-import About from "./routes/About";
-import Products from "./routes/Products";
-import Industries from "./routes/Industries";
-import Contact from "./routes/Contact";
-import NotFound from "./routes/NotFound";
-import AdminLogin from "./routes/admin/AdminLogin";
-import AdminDashboard from "./routes/admin/AdminDashboard";
-import AdminMessages from "./routes/admin/AdminMessages";
-import ProtectedRoute from "../components/admin/ProtectedRoute";
+import MainLayout from "./app/layouts/MainLayout";
+import Home from "./app/routes/Home";
+import About from "./app/routes/About";
+import Products from "./app/routes/Products";
+import Industries from "./app/routes/Industries";
+import Contact from "./app/routes/Contact";
+import NotFound from "./app/routes/NotFound";
+import AdminLogin from "./app/routes/admin/AdminLogin";
+import AdminDashboard from "./app/routes/admin/AdminDashboard";
+import AdminMessages from "./app/routes/admin/AdminMessages";
+import ProtectedRoute from "./app/routes/admin/ProtectedRoute";
 
 function App() {
   return (
