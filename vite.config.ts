@@ -6,6 +6,8 @@ import path from "path";
 export default defineConfig({
   plugins: [react(), tailwindcss()],
 
+  base: "/", // Add this line
+
   resolve: {
     alias: {
       "@": path.resolve(import.meta.dirname, "./src"),
@@ -13,4 +15,14 @@ export default defineConfig({
   },
 
   publicDir: "public",
+
+  build: {
+    outDir: "dist",
+    assetsDir: "assets",
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+  },
 });
