@@ -14,4 +14,10 @@ if (!supabaseUrl || !supabaseAnonKey) {
   );
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
+
+// Export as default (for import supabase from "@/lib/supabase")
+export default supabase;
+
+// Also export as named (for import { supabase } from "@/lib/supabase")
+export { supabase };
