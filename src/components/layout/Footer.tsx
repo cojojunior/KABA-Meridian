@@ -23,8 +23,8 @@ const productCategories = [
 export default function Footer() {
   return (
     <footer className="bg-secondary-900 text-secondary-300">
-      <div className="container-custom py-5 lg:py-10 md:py-10">
-        <div className="grid grid-cols-1 grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="container-custom py-5 lg:py-10 md:py-10 ">
+        <div className="grid grid-cols-2 grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-5 px-2">
           <div>
             <Link to="/" className="flex items-center gap-3 mb-6">
               <img
@@ -72,7 +72,7 @@ export default function Footer() {
 
           <div>
             <h4 className="text-accent-300 font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2">
+            <ul className="space-y-2 ">
               {quickLinks.map((link) => (
                 <li key={link.path}>
                   <Link
@@ -101,7 +101,7 @@ export default function Footer() {
               <li>
                 <Link
                   to="/products"
-                  className="text-sm text-primary-1 hover:text-accent-400 transition-colors">
+                  className="text-[12px] text-primary-1 hover:text-accent-400 transition-colors">
                   View All Products →
                 </Link>
               </li>
@@ -111,7 +111,7 @@ export default function Footer() {
           <div>
             <h4 className="text-accent-300 font-semibold mb-4">Contact Us</h4>
             <div className="space-y-4">
-              <div className="flex items-start gap-3">
+              <div className="flex items-start gap-3 ">
                 <MapPin className="h-5 w-5 text-primary-1 flex-shrink-0 mt-0.5" />
                 <span className="text-sm">Accra, Ghana</span>
               </div>
@@ -123,7 +123,7 @@ export default function Footer() {
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <Mail className="h-5 w-5 text-primary-1 flex-shrink-0" />
+                <Mail className="h-5 w-5 text-primary-1 flex-shrink-0 " />
                 <span className="text-sm">kabameridian@gmail.com</span>
               </div>
             </div>
