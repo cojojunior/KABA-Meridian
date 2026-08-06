@@ -33,7 +33,7 @@ const features = [
 export default function AboutPreview() {
   return (
     <section
-      className="relative py-6 sm:py-25 md:py-24 overflow-hidden"
+      className="relative py-6 sm:py-5 md:py-10 lg:py-10 overflow-hidden"
       style={{
         backgroundImage: "url(/about.jpg)",
         backgroundSize: "cover",
@@ -44,8 +44,8 @@ export default function AboutPreview() {
       {/* Overlay for better text readability */}
       <div className="absolute inset-0 bg-[#05383f]/80"></div>
 
-      <div className="container-custom relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center px-2 py-1">
+      <div className="container-custom relative z-10 lg:py-1">
+        <div className="grid lg:grid-cols-2 gap-12 items-center px-2 py-1 ">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -91,7 +91,7 @@ export default function AboutPreview() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="grid sm:grid-cols-2 gap-4">
+            className="grid grid-cols-2 sm:grid-cols-2 gap-4">
             {features.map((feature, index) => (
               <div
                 key={index}

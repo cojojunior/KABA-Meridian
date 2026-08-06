@@ -39,7 +39,7 @@ const industries = [
 
 export default function IndustriesSection() {
   return (
-    <Section background="white" className="py-5 px-2 lg:py-3">
+    <Section background="white" className="py-5 px-2 lg:py-3 md:py-5 md:px-2">
       <div className="text-center mb-12">
         <h2 className="text-sm font-semibold text-accent-300 uppercase tracking-wider">
           Industries We Serve

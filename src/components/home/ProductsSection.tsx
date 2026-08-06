@@ -60,7 +60,7 @@ const products = [
 
 export default function ProductsSection() {
   return (
-    <Section background="white" className="py-3 px-2 lg:py-3">
+    <Section background="white" className="py-3 px-2 lg:py-3 md:py-5">
       <div className="text-center mb-5 py-1">
         <h2 className="text-sm font-semibold text-accent-400 uppercase tracking-wider">
           What We Supply

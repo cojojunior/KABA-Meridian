@@ -8,9 +8,9 @@ export default function CTASection() {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
 
   return (
-    <section className="relative overflow-hidden lg:py-2">
+    <section className="relative overflow-hidden lg:py-20 md:py-15 sm:py-10">
       {/* Background Video */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden">
+      <div className="absolute inset-0 w-full h-150 overflow-hidden">
         <div className="absolute inset-0 flex items-center justify-center">
           <video
             autoPlay
@@ -21,7 +21,7 @@ export default function CTASection() {
               isVideoLoaded ? "opacity-100" : "opacity-0"
             }`}
             style={{
-              filter: "brightness(0.15) saturate(0.2) contrast(1.1)",
+              filter: "brightness(0.25) saturate(0.2) contrast(1.1)",
               width: "auto",
               height: "100%",
               maxWidth: "none",
@@ -39,7 +39,7 @@ export default function CTASection() {
       </div>
 
       {/* 30% Opacity Green Overlay */}
-      <div className="absolute inset-0 bg-[#05383f]/30" />
+      <div className="absolute inset-0 bg-[#05383f]/40" />
 
       {/* Additional Overlay for better text readability */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
@@ -68,7 +68,7 @@ export default function CTASection() {
       </div>
 
       {/* Content */}
-      <div className="container-custom relative z-10 py-20 md:py-28">
+      <div className="container-custom relative z-10 py-10 md:py-15 sm:py-10 lg:py-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -77,7 +77,7 @@ export default function CTASection() {
           className="text-center max-w-4xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
             Ready to Partner with a{" "}
-            <span className="text-gradient ">Trusted Supplier</span>?
+            <span className="text-accent-400">Trusted Supplier</span>?
           </h2>
           <p className="text-xl text-white/90 leading-relaxed mb-8">
             Contact us today for a competitive quotation and let us help you
