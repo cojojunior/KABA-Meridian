@@ -7,6 +7,7 @@ import Industries from "./app/routes/Industries";
 import Contact from "./app/routes/Contact";
 import NotFound from "./app/routes/NotFound";
 import AdminLogin from "./app/routes/admin/AdminLogin";
+import AdminSignUp from "./app/routes/admin/AdminSignUp";
 import AdminDashboard from "./app/routes/admin/AdminDashboard";
 import AdminMessages from "./app/routes/admin/AdminMessages";
 import ProtectedRoute from "./app/routes/admin/ProtectedRoute";
@@ -27,6 +28,7 @@ function App() {
 
         {/* Admin Routes - No Layout */}
         <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin/signup" element={<AdminSignUp />} />
         <Route
           path="/admin"
           element={
