@@ -1,42 +1,46 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import {
-  Building2,
-  HardHat,
-  Factory,
-  Truck,
-  Warehouse,
-  Landmark,
-  ArrowRight,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 
 const industries = [
-  { icon: Building2, name: "Mining", color: "bg-amber-100 text-amber-600" },
   {
-    icon: HardHat,
+    image: "/mining.jpg",
+    name: "Mining",
+    color: "border-primary-50",
+  },
+  {
+    image: "/construction.jpg",
     name: "Construction",
-    color: "bg-orange-100 text-orange-600",
+    color: "border-primary-50",
   },
-  { icon: Factory, name: "Manufacturing", color: "bg-blue-100 text-blue-600" },
-  { icon: Truck, name: "Logistics", color: "bg-green-100 text-green-600" },
   {
-    icon: Warehouse,
+    image: "/manufacturing.jpg",
+    name: "Manufacturing",
+    color: "border-primary-50",
+  },
+  {
+    image: "/logistic.jpg",
+    name: "Logistics",
+    color: "border-primary-50",
+  },
+  {
+    image: "/warehouse.jpg",
     name: "Warehousing",
-    color: "bg-purple-100 text-purple-600",
+    color: "border-primary-50",
   },
   {
-    icon: Landmark,
+    image: "/government.jpg",
     name: "Government Institutions",
-    color: "bg-red-100 text-red-600",
+    color: "border-primary-50",
   },
 ];
 
 export default function IndustriesSection() {
   return (
     <Section background="white" className="py-5 px-2 lg:py-3">
-      <div className="text-center mb-12 ">
+      <div className="text-center mb-12">
         <h2 className="text-sm font-semibold text-accent-300 uppercase tracking-wider">
           Industries We Serve
         </h2>
@@ -57,14 +61,19 @@ export default function IndustriesSection() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: index * 0.05 }}
-            className="bg-white rounded-xl p-6 text-center shadow-card hover:shadow-card-hover transition-all duration-300 hover:scale-105">
-            <div
-              className={`w-14 h-14 rounded-xl ${industry.color} flex items-center justify-center mx-auto mb-3`}>
-              <industry.icon className="h-7 w-7" />
+            className={`bg-white rounded-xl overflow-hidden shadow-card hover:shadow-card-hover transition-all duration-300 hover:scale-105 border-2 ${industry.color}`}>
+            <div className="relative h-40 w-full overflow-hidden">
+              <img
+                src={industry.image}
+                alt={industry.name}
+                className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+              />
             </div>
-            <span className="text-sm font-medium text-secondary-900">
-              {industry.name}
-            </span>
+            <div className="p-3 text-center">
+              <span className="text-sm font-semibold text-secondary-900">
+                {industry.name}
+              </span>
+            </div>
           </motion.div>
         ))}
       </div>
