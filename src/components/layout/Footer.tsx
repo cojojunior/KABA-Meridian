@@ -23,7 +23,7 @@ const productCategories = [
 export default function Footer() {
   return (
     <footer className="bg-secondary-900 text-secondary-300">
-      <div className="container-custom py-16">
+      <div className="container-custom py-5 lg:py-10">
         <div className="grid grid-cols-1 grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-12">
           <div>
             <Link to="/" className="flex items-center gap-3 mb-6">
