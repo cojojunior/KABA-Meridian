@@ -94,16 +94,18 @@ const products = [
 export default function Products() {
   return (
     <>
-      <Section background="gray" spacing="xl" className="py-10 px-2 lg:py-15">
+      <Section
+        spacing="xl"
+        className="py-10 px-2 lg:py-15 text-primary-600 bg-primary-600/10">
         <div className="text-center max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}>
-            <h1 className="text-4xl md:text-5xl font-bold text-secondary-900 mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold  mb-4">
               Our Products
             </h1>
-            <p className="text-xl text-secondary-600 leading-relaxed">
+            <p className="text-xl text-primary-600/80 leading-relaxed">
               Comprehensive industrial supply solutions for your business needs.
             </p>
           </motion.div>
@@ -126,10 +128,10 @@ export default function Products() {
                       <product.icon className="h-8 w-8" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-secondary-900 mb-3">
+                      <h3 className="text-xl font-bold text-primary-600 mb-3">
                         {product.title}
                       </h3>
-                      <p className="text-secondary-600 leading-relaxed mb-4">
+                      <p className="text-primary-600/90 leading-relaxed mb-4">
                         {product.description}
                       </p>
                       <div className="flex flex-wrap gap-2">
@@ -137,7 +139,7 @@ export default function Products() {
                           <span
                             key={idx}
                             className="inline-flex items-center gap-1 text-sm bg-secondary-50 px-3 py-1 rounded-full text-secondary-700">
-                            <CheckCircle className="h-3 w-3 text-primary-500" />
+                            <CheckCircle className="h-3 w-3 text-accent-400" />
                             {feature}
                           </span>
                         ))}

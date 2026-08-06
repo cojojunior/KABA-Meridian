@@ -7,16 +7,18 @@ import { Card, CardContent } from "@/components/ui/Card";
 export default function Contact() {
   return (
     <>
-      <Section background="gray" spacing="xl" className="py-5 px-2 lg:py-15">
-        <div className="text-center max-w-4xl mx-auto ">
+      <Section
+        spacing="xl"
+        className="bg-primary-600/10 py-5 px-2 lg:py-15 text-primary-600">
+        <div className="text-center max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}>
-            <h1 className="text-4xl md:text-5xl font-bold text-secondary-600 mb-4">
+            <h1 className="text-4xl  md:text-5xl font-bold  mb-4">
               Contact Us
             </h1>
-            <p className="text-xl text-secondary-600 leading-relaxed">
+            <p className="text-xl  leading-relaxed">
               Get in touch with us for all your industrial procurement needs.
             </p>
           </motion.div>
@@ -170,12 +172,12 @@ export default function Contact() {
       </Section>
 
       {/* Quote CTA */}
-      <Section background="primary" spacing="xl" className="py-5 lg:py-5">
+      <Section
+        spacing="xl"
+        className="bg-primary-600/10 text-primary-600 py-5 lg:py-5">
         <div className="text-center max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold text-secondary-900 mb-4">
-            Need a Quick Quote?
-          </h2>
-          <p className="text-lg text-secondary-600 mb-8">
+          <h2 className="text-3xl font-bold  mb-4">Need a Quick Quote?</h2>
+          <p className="text-lg text-primary-600/80 mb-8">
             Contact us today for a competitive quotation and let us help you
             source the products your business needs.
           </p>

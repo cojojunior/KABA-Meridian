@@ -113,7 +113,7 @@ export default function Hero() {
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
               One-Stop Industrial{" "}
-              <span className="text-gradient bg-">Procurement Partner</span>
+              <span className="text-accent-400">Procurement Partner</span>
             </h1>
 
             <p className="text-lg text-white/90 leading-relaxed mb-8 max-w-xl">
@@ -177,8 +177,6 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="grid grid-cols-2 gap-4">
             {[
-              { value: "500+", label: "Happy Clients" },
-              { value: "1,000+", label: "Products Supplied" },
               { value: "98%", label: "On-Time Delivery" },
               { value: "24/7", label: "Customer Support" },
             ].map((stat, index) => (
