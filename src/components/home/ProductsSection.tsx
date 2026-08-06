@@ -11,42 +11,42 @@ const products = [
     title: "Personal Protective Equipment (PPE)",
     description:
       "Quality safety equipment including helmets, safety boots, gloves, goggles, reflective clothing, and respirators.",
-    color: "border-blue-200",
+    color: "border-primary-50",
   },
   {
     image: "/industrialConsumables.jpg",
     title: "Industrial Consumables",
     description:
       "Essential products including bearings, fasteners, filters, hoses, welding consumables, belts, and more.",
-    color: "border-green-200",
+    color: "border-primary-50",
   },
   {
     image: "/industrialtools.jpg",
     title: "Industrial Tools",
     description:
       "Reliable hand tools, power tools, measuring equipment, and workshop essentials.",
-    color: "border-orange-200",
+    color: "border-primary-50",
   },
   {
     image: "/office.jpg",
     title: "Office Supplies",
     description:
       "Quality office stationery, printing supplies, office furniture, and workplace essentials.",
-    color: "border-purple-200",
+    color: "border-primary-50",
   },
   {
     image: "/plumb.jpg",
     title: "Plumbing Materials",
     description:
       "Durable plumbing products including pipes, fittings, valves, pumps, and installation materials.",
-    color: "border-cyan-200",
+    color: "border-primary-50",
   },
   {
     image: "/uniform.jpg",
     title: "Workwear & Uniforms",
     description:
       "Durable uniforms, protective clothing, branded corporate wear, and high-visibility garments.",
-    color: "border-red-200",
+    color: "border-primary-50",
   },
 ];
 
