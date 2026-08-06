@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   FileText,
   LogOut,
@@ -13,6 +13,8 @@ import {
   Clock,
   XCircle,
   Trash2,
+  AlertTriangle,
+  X,
 } from "lucide-react";
 import supabase from "@/lib/supabase";
 import { Card, CardContent } from "@/components/ui/Card";
@@ -30,6 +32,169 @@ interface Quotation {
   created_at: string;
 }
 
+// Custom Confirmation Dialog Component
+function ConfirmationDialog({
+  isOpen,
+  onClose,
+  onConfirm,
+  title,
+  message,
+  confirmText = "Delete",
+  cancelText = "Cancel",
+  type = "danger",
+  isLoading = false,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  onConfirm: () => void;
+  title: string;
+  message: string;
+  confirmText?: string;
+  cancelText?: string;
+  type?: "danger" | "warning" | "info";
+  isLoading?: boolean;
+}) {
+  if (!isOpen) return null;
+
+  const getTypeStyles = () => {
+    switch (type) {
+      case "danger":
+        return {
+          icon: "text-red-500",
+          button: "bg-red-600 hover:bg-red-700 focus:ring-red-500",
+          border: "border-red-200",
+          bg: "bg-red-50",
+        };
+      case "warning":
+        return {
+          icon: "text-yellow-500",
+          button: "bg-yellow-600 hover:bg-yellow-700 focus:ring-yellow-500",
+          border: "border-yellow-200",
+          bg: "bg-yellow-50",
+        };
+      case "info":
+        return {
+          icon: "text-blue-500",
+          button: "bg-blue-600 hover:bg-blue-700 focus:ring-blue-500",
+          border: "border-blue-200",
+          bg: "bg-blue-50",
+        };
+    }
+  };
+
+  const styles = getTypeStyles();
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+          />
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full mx-4 overflow-hidden">
+            <div
+              className={`p-6 border-b ${styles.bg} border-gray-200 flex items-start justify-between`}>
+              <div className="flex items-start gap-3">
+                <div className={`p-2 rounded-full ${styles.bg} ${styles.icon}`}>
+                  <AlertTriangle className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-secondary-900">
+                    {title}
+                  </h3>
+                  <p className="text-sm text-secondary-500 mt-1">{message}</p>
+                </div>
+              </div>
+              <button
+                onClick={onClose}
+                disabled={isLoading}
+                className="p-1 hover:bg-gray-100 rounded-lg transition-colors flex-shrink-0">
+                <X className="h-5 w-5 text-secondary-400" />
+              </button>
+            </div>
+
+            <div className="p-6 bg-gray-50 flex flex-col sm:flex-row gap-3 justify-end">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={onClose}
+                disabled={isLoading}
+                className="w-full sm:w-auto">
+                {cancelText}
+              </Button>
+              <Button
+                variant={type === "danger" ? "destructive" : "primary"}
+                size="sm"
+                onClick={onConfirm}
+                disabled={isLoading}
+                className={`w-full sm:w-auto ${styles.button}`}>
+                {isLoading ? (
+                  <>
+                    <span className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent mr-2"></span>
+                    Deleting...
+                  </>
+                ) : (
+                  confirmText
+                )}
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+// Success Toast Component
+function SuccessToast({
+  message,
+  isVisible,
+  onClose,
+}: {
+  message: string;
+  isVisible: boolean;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    if (isVisible) {
+      const timer = setTimeout(() => {
+        onClose();
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible, onClose]);
+
+  return (
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 bg-green-50 border border-green-200 rounded-lg px-6 py-4 shadow-lg flex items-center gap-3">
+          <CheckCircle className="h-5 w-5 text-green-600" />
+          <span className="text-green-800 font-medium">{message}</span>
+          <button
+            onClick={onClose}
+            className="text-green-600 hover:text-green-800">
+            <X className="h-4 w-4" />
+          </button>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 export default function AdminDashboard() {
   const [quotations, setQuotations] = useState<Quotation[]>([]);
   const [loading, setLoading] = useState(true);
@@ -37,7 +202,17 @@ export default function AdminDashboard() {
   const [selectedQuotation, setSelectedQuotation] = useState<Quotation | null>(
     null,
   );
-  const [deletingId, setDeletingId] = useState<number | null>(null);
+  // REMOVED: const [deletingId, setDeletingId] = useState<number | null>(null);
+
+  // Dialog states
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [deleteTargetId, setDeleteTargetId] = useState<number | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  // Toast states
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -83,28 +258,28 @@ export default function AdminDashboard() {
       }
     } catch (error: any) {
       console.error("Error updating status:", error);
-      alert("Failed to update status.");
+      setError("Failed to update status.");
     }
   };
 
-  // DELETE FUNCTION - Fully implemented
-  const deleteQuotation = async (id: number) => {
-    // Show confirmation dialog
-    if (
-      !confirm(
-        "Are you sure you want to delete this quotation request? This action cannot be undone.",
-      )
-    ) {
-      return;
-    }
+  const handleDeleteClick = (id: number) => {
+    setDeleteTargetId(id);
+    setShowDeleteDialog(true);
+  };
 
-    setDeletingId(id);
+  const confirmDelete = async () => {
+    if (!deleteTargetId) return;
+
+    setIsDeleting(true);
     setError(null);
 
     try {
-      console.log("Deleting quotation with ID:", id);
+      console.log("Deleting quotation with ID:", deleteTargetId);
 
-      const { error } = await supabase.from("quotations").delete().eq("id", id);
+      const { error } = await supabase
+        .from("quotations")
+        .delete()
+        .eq("id", deleteTargetId);
 
       if (error) {
         console.error("Supabase delete error:", error);
@@ -114,22 +289,21 @@ export default function AdminDashboard() {
 
       console.log("Quotation deleted successfully from Supabase");
 
-      // Remove from local state
-      setQuotations((prev) => prev.filter((q) => q.id !== id));
+      setQuotations((prev) => prev.filter((q) => q.id !== deleteTargetId));
 
-      // If the deleted item was selected, clear selection
-      if (selectedQuotation && selectedQuotation.id === id) {
+      if (selectedQuotation && selectedQuotation.id === deleteTargetId) {
         setSelectedQuotation(null);
       }
 
-      // Show success message
-      alert("Quotation request deleted successfully!");
+      setSuccessMessage("Quotation request deleted successfully!");
+      setShowSuccessToast(true);
     } catch (error: any) {
       console.error("Error deleting quotation:", error);
       setError(error.message || "Failed to delete quotation.");
-      alert("Failed to delete quotation. Please try again.");
     } finally {
-      setDeletingId(null);
+      setIsDeleting(false);
+      setShowDeleteDialog(false);
+      setDeleteTargetId(null);
     }
   };
 
@@ -217,6 +391,27 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      <SuccessToast
+        message={successMessage}
+        isVisible={showSuccessToast}
+        onClose={() => setShowSuccessToast(false)}
+      />
+
+      <ConfirmationDialog
+        isOpen={showDeleteDialog}
+        onClose={() => {
+          setShowDeleteDialog(false);
+          setDeleteTargetId(null);
+        }}
+        onConfirm={confirmDelete}
+        title="Delete Quotation Request"
+        message="Are you sure you want to delete this quotation request? This action cannot be undone and will permanently remove it from the database."
+        confirmText="Delete Forever"
+        cancelText="Cancel"
+        type="danger"
+        isLoading={isDeleting}
+      />
+
       <header className="bg-white border-b border-gray-200 sticky top-0 z-10 shadow-sm">
         <div className="container-custom py-4">
           <div className="flex items-center justify-between">
@@ -420,20 +615,19 @@ export default function AdminDashboard() {
                         )}
                       </div>
                     </div>
-                    {/* Delete Button on List */}
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        deleteQuotation(quotation.id);
+                        handleDeleteClick(quotation.id);
                       }}
-                      disabled={deletingId === quotation.id}
+                      disabled={isDeleting && deleteTargetId === quotation.id}
                       className={`p-2 rounded-lg transition-colors ml-4 flex-shrink-0 ${
-                        deletingId === quotation.id
+                        isDeleting && deleteTargetId === quotation.id
                           ? "bg-gray-100 text-gray-400 cursor-not-allowed"
                           : "hover:bg-red-100 text-red-500 hover:text-red-700"
                       }`}
                       title="Delete">
-                      {deletingId === quotation.id ? (
+                      {isDeleting && deleteTargetId === quotation.id ? (
                         <div className="animate-spin rounded-full h-4 w-4 border-2 border-gray-400 border-t-transparent"></div>
                       ) : (
                         <Trash2 className="h-4 w-4" />
@@ -447,7 +641,7 @@ export default function AdminDashboard() {
         </div>
 
         {selectedQuotation && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-40 p-4">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -598,12 +792,12 @@ export default function AdminDashboard() {
                     variant="destructive"
                     size="sm"
                     onClick={() => {
-                      deleteQuotation(selectedQuotation.id);
+                      handleDeleteClick(selectedQuotation.id);
                       setSelectedQuotation(null);
                     }}
                     className="gap-2"
-                    disabled={deletingId === selectedQuotation.id}>
-                    {deletingId === selectedQuotation.id ? (
+                    disabled={isDeleting}>
+                    {isDeleting ? (
                       <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
                     ) : (
                       <>
