@@ -1,19 +1,15 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback } from "react";
 import { supabase } from "../lib/supabase";
 
 interface RateLimitState {
   allowed: boolean;
   message: string;
-  retryAfter?: number;
   remaining?: number;
 }
 
 export const useRateLimit = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const cache = useRef<Map<string, { expiry: number; count: number }>>(
-    new Map(),
-  );
 
   const checkRateLimit = useCallback(
     async (
@@ -26,38 +22,13 @@ export const useRateLimit = () => {
       setError(null);
 
       try {
-        const cacheKey = `${identifier}-${actionType}`;
-        const cached = cache.current.get(cacheKey);
-        const now = Date.now();
-        const windowMs = windowMinutes * 60 * 1000;
+        console.log("🔍 Checking rate limit:", {
+          identifier,
+          actionType,
+          maxRequests,
+          windowMinutes,
+        });
 
-        if (cached) {
-          // Check if cache is still valid
-          if (now < cached.expiry) {
-            // Still within window
-            if (cached.count >= maxRequests) {
-              const retryAfter = Math.ceil((cached.expiry - now) / 1000);
-              return {
-                allowed: false,
-                message: `Rate limit exceeded. Please try again in ${retryAfter} seconds.`,
-                retryAfter,
-                remaining: 0,
-              };
-            }
-            // Increment count
-            cached.count++;
-            cache.current.set(cacheKey, cached);
-            return {
-              allowed: true,
-              message: "Request allowed",
-              remaining: maxRequests - cached.count,
-            };
-          }
-          // Cache expired, remove it
-          cache.current.delete(cacheKey);
-        }
-
-        // If not in cache or expired, check database
         const { data, error } = await supabase.rpc(
           "check_rate_limit_with_message",
           {
@@ -68,23 +39,16 @@ export const useRateLimit = () => {
           },
         );
 
-        if (error) throw error;
+        console.log("📊 Rate limit response:", data);
 
-        // Update cache with the result
-        if (data.allowed) {
-          cache.current.set(cacheKey, {
-            expiry: now + windowMs,
-            count: 1,
-          });
-        } else {
-          cache.current.set(cacheKey, {
-            expiry: now + windowMs,
-            count: maxRequests,
-          });
+        if (error) {
+          console.error("❌ Rate limit error:", error);
+          throw error;
         }
 
         return data;
       } catch (err: any) {
+        console.error("❌ Rate limit catch error:", err);
         setError(err.message);
         return {
           allowed: false,
