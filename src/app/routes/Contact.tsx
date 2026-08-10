@@ -1,18 +1,11 @@
 import { motion } from "framer-motion";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Clock,
-  Send,
-  FileText,
-  
-} from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Send, FileText } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Section } from "@/components/ui/Section";
 import { Card, CardContent } from "@/components/ui/Card";
 import { useState } from "react";
-import {supabase } from "@/lib/supabase";
+import { supabase } from "@/lib/supabase";
+import { useRateLimit } from "@/hooks/useRateLimit"; // Add this import
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -27,6 +20,9 @@ export default function Contact() {
   const [isSending, setIsSending] = useState(false);
   const [isSent, setIsSent] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Add rate limiting hook
+  const { checkRateLimit, isLoading: rateLimitLoading } = useRateLimit();
 
   const handleInputChange = (
     e: React.ChangeEvent<
@@ -84,6 +80,29 @@ export default function Contact() {
     setError(null);
 
     try {
+      // --- RATE LIMITING START ---
+      // Use email as identifier for rate limiting
+      const identifier = formData.email;
+
+      // Check rate limit - 5 requests per 15 minutes
+      const rateLimitResult = await checkRateLimit(
+        identifier,
+        "quote_submission",
+        5,
+        15,
+      );
+
+      // If rate limit exceeded, show error and stop
+      if (!rateLimitResult.allowed) {
+        setError(
+          rateLimitResult.message ||
+            "Too many requests. Please try again later.",
+        );
+        setIsSending(false);
+        return;
+      }
+      // --- RATE LIMITING END ---
+
       // Send to Supabase
       await sendToSupabase(formData);
 
@@ -279,7 +298,7 @@ export default function Contact() {
                 variant="primary"
                 size="lg"
                 className="w-full gap-2"
-                disabled={isSending}>
+                disabled={isSending || rateLimitLoading}>
                 {isSending ? (
                   <>
                     <span className="animate-spin">⏳</span>
