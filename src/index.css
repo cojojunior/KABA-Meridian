@@ -109,3 +109,46 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+/* Hexagon shape */
+.hexagon {
+  height: 120px;
+  width: calc(120px * 0.866); /* aspect-ratio: cos(30deg) */
+  clip-path: polygon(-50% 50%, 50% 100%, 150% 50%, 50% 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Inner hexagon (slightly smaller for content) */
+.hexagon-inner {
+  height: calc(100% - 8px);
+  width: calc(100% - 8px);
+  clip-path: polygon(-50% 50%, 50% 100%, 150% 50%, 50% 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+}
+
+/* Responsive sizes */
+@media (max-width: 640px) {
+  .hexagon {
+    height: 90px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .hexagon {
+    height: 105px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .hexagon {
+    height: 120px;
+  }
+}
