@@ -58,7 +58,7 @@ export default function Navbar() {
                 className="h-9 w-auto"
               />
               <div className="flex items-baseline">
-                <span className="text-[25px] font-corsiva text-primary-600 ml-1">
+                <span className="text-[25px] font-corsiva font-bold text-primary-600 ml-1">
                   Meridian
                 </span>
               </div>
