@@ -7,262 +7,330 @@ import {
   Headphones,
   Handshake,
 } from "lucide-react";
-import { Section } from "@/components/ui/Section";
 
-// Define the type for position
-type Position = "left" | "right";
-
-interface InfoNodeData {
-  id: number;
-  icon: any;
-  title: string;
-  description: string;
-  position: Position;
-}
-
-interface InfoNodeProps {
-  icon: any;
-  title: string;
-  description: string;
-  position: Position;
-  index: number;
-}
-
-const infoNodes: InfoNodeData[] = [
+const reasons = [
   {
     id: 1,
     icon: Shield,
-    title: "QUALITY PRODUCTS",
+    title: "Quality Products",
     description:
       "Products from trusted manufacturers meeting highest quality standards.",
-    position: "left",
+    color: "#155DFC",
   },
   {
     id: 2,
-    icon: DollarSign,
-    title: "COMPETITIVE PRICING",
+    icon: Headphones,
+    title: "Professional Support",
     description:
-      "Cost-effective solutions without compromising on quality or service.",
-    position: "left",
+      "Dedicated customer service team ready to assist with your needs.",
+    color: "#E7000B",
   },
   {
     id: 3,
-    icon: Box,
-    title: "ONE TRUSTED SUPPLIER",
+    icon: Truck,
+    title: "Fast Delivery",
     description:
-      "Single source for multiple product categories, simplifying procurement.",
-    position: "left",
+      "Timely delivery to keep your operations running without interruption.",
+    color: "#F54900",
   },
   {
     id: 4,
-    icon: Truck,
-    title: "FAST DELIVERY",
+    icon: Box,
+    title: "One Trusted Supplier",
     description:
-      "Timely delivery to keep your operations running without interruption.",
-    position: "right",
+      "Single source for multiple product categories, simplifying procurement.",
+    color: "#9810FA",
   },
   {
     id: 5,
-    icon: Headphones,
-    title: "PROFESSIONAL SUPPORT",
+    icon: DollarSign,
+    title: "Competitive Pricing",
     description:
-      "Dedicated customer service team ready to assist with your needs.",
-    position: "right",
+      "Cost-effective solutions without compromising on quality or service.",
+    color: "#00A63E",
   },
   {
     id: 6,
     icon: Handshake,
-    title: "LONG-TERM PARTNERSHIP",
+    title: "Long-term Partnership",
     description:
       "Building lasting relationships focused on your operational success.",
-    position: "right",
+    color: "#05383F",
   },
 ];
 
-const InfoNode = ({
+const InfoCard = ({
   icon: Icon,
   title,
   description,
-  position,
-  index,
-}: InfoNodeProps) => {
-  const isLeft = position === "left";
-  const nodeIndex = isLeft ? index : index - 3;
-
+  color,
+  delay,
+}: {
+  icon: any;
+  title: string;
+  description: string;
+  color: string;
+  delay: number;
+}) => {
   return (
     <motion.div
-      initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: nodeIndex * 0.1 }}
-      className={`flex items-center gap-4 md:gap-5 ${
-        isLeft ? "flex-row" : "flex-row-reverse"
-      }`}>
-      {/* Icon Circle */}
-      <div className="relative flex-shrink-0">
-        <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white border-2 border-[#E99A3A] shadow-lg shadow-gray-200/50 flex items-center justify-center">
-          <Icon className="w-6 h-6 md:w-7 md:h-7 text-[#222222] stroke-[1.5]" />
+      transition={{ duration: 0.5, delay }}
+      className="bg-[#000]/30 backdrop-blur-sm rounded-xl p-5 shadow-[0px_4px_6px_-1px_rgba(0,0,0,0.1),0px_2px_4px_-1px_rgba(0,0,0,0.06)] hover:shadow-lg transition-shadow duration-300 border border-white/20">
+      <div className="flex items-start gap-4">
+        <div className="flex-shrink-0">
+          <div className="w-12 h-12 bg-white rounded-xl shadow-[0px_1px_3px_rgba(0,0,0,0.1),0px_1px_2px_-1px_rgba(0,0,0,0.1)] flex items-center justify-center">
+            <Icon className="w-6 h-6" strokeWidth={1.5} style={{ color }} />
+          </div>
         </div>
-        {/* Decorative ring */}
-        <div className="absolute inset-[-4px] rounded-full border border-[#D9D9D9]/50"></div>
-      </div>
-
-      {/* Text Content */}
-      <div className={`${isLeft ? "text-left" : "text-right"} flex-1`}>
-        <h4 className="text-xs md:text-sm font-bold text-[#222222] uppercase tracking-wide">
-          {title}
-        </h4>
-        <p className="text-[10px] md:text-xs text-[#858585] leading-relaxed mt-0.5 max-w-[180px] md:max-w-[220px]">
-          {description}
-        </p>
+        <div className="flex-1 min-w-0">
+          <h4 className="text-sm font-bold text-white mb-1 tracking-wider">{title}</h4>
+          <p className="text-sm text-white/80 leading-relaxed">{description}</p>
+        </div>
       </div>
     </motion.div>
   );
 };
 
 export default function WhyChooseUs() {
-  const leftNodes = infoNodes.filter((n) => n.position === "left");
-  const rightNodes = infoNodes.filter((n) => n.position === "right");
+  // Split cards into two rows of 3
+  const topRowCards = reasons.slice(0, 3);
+  const bottomRowCards = reasons.slice(3, 6);
 
   return (
-    <Section background="white" className="py-8 md:py-12 lg:py-16 px-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Top Title */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-8 md:mb-12">
-          <h2 className="text-xs md:text-sm font-bold text-primary-600 uppercase tracking-[0.1em]">
-            Why Choose Us
-            </h2><br />
-            <p className="font-bold tracking-[0.2em]">Your Trusted Procurement Partner</p>
-            <p className="text-primary-600/50 tracking-[0em]">
+    <section className="w-full py-12 px-4 relative overflow-hidden">
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('/whybg.jpg')`,
+        }}
+      />
+
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 w-full h-full bg-[#000]/70" />
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto">
+        {/* Two Column Layout: Header | SVG */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-8">
+          {/* Left Column: Header */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col justify-center">
+            <h2 className="text-[#FB923C] text-3xl font-semibold uppercase tracking-[0.7px] mb-2">
+              Why Choose Us
+            </h2> <br />
+            <h3 className="text-white text-3xl md:text-4xl font-bold mb-3">
+              Your Trusted Partner to source it <i className="text-accent-400"> RIGHT  </i>  the First Time
+            </h3>
+            <p className="text-white/70 text-lg max-w-lg">
               We deliver quality, reliability, and value to support your
               operational success.
             </p>
-          
-        </motion.div>
+          </motion.div>
 
-        {/* Main Layout */}
-        <div className="relative flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4">
-          {/* Left Nodes */}
-          <div className="flex flex-col gap-6 md:gap-8 w-full md:w-[280px] lg:w-[320px] order-2 md:order-1">
-            {leftNodes.map((node, index) => (
-              <InfoNode
-                key={node.id}
-                icon={node.icon}
-                title={node.title}
-                description={node.description}
-                position={node.position}
-                index={index}
-              />
-            ))}
-          </div>
-
-          {/* Center Circle */}
-          <div className="order-1 md:order-2 flex-shrink-0">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative">
-              {/* Connector Lines - SVG overlay */}
+          {/* Right Column: SVG Infographic */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex justify-center items-center">
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-sm w-full max-w-[531px] border border-white/10">
               <svg
-                className="absolute inset-0 w-full h-full pointer-events-none z-0"
-                viewBox="0 0 300 300"
-                preserveAspectRatio="none">
-                {/* Left side lines */}
-                <polyline
-                  points="0,45 80,45 110,75"
-                  stroke="#E99A3A"
-                  strokeWidth="2"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <polyline
-                  points="0,150 80,150 110,150"
-                  stroke="#E87E32"
-                  strokeWidth="2"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <polyline
-                  points="0,255 80,255 110,225"
-                  stroke="#D85A43"
-                  strokeWidth="2"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                {/* Right side lines */}
-                <polyline
-                  points="300,45 220,45 190,75"
-                  stroke="#E99A3A"
-                  strokeWidth="2"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <polyline
-                  points="300,150 220,150 190,150"
-                  stroke="#E87E32"
-                  strokeWidth="2"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <polyline
-                  points="300,255 220,255 190,225"
-                  stroke="#D85A43"
-                  strokeWidth="2"
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
+                width="531"
+                height="485"
+                viewBox="0 0 531 485"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-full h-auto">
+                <defs>
+                  <clipPath id="hex-top-left">
+                    <rect
+                      width="161"
+                      height="183"
+                      fill="white"
+                      transform="translate(90, 0)"
+                    />
+                  </clipPath>
+                  <clipPath id="hex-top-right">
+                    <rect
+                      width="161"
+                      height="183"
+                      fill="white"
+                      transform="translate(275, 0)"
+                    />
+                  </clipPath>
+                  <clipPath id="hex-middle-left">
+                    <rect
+                      width="161"
+                      height="183"
+                      fill="white"
+                      transform="translate(0, 151)"
+                    />
+                  </clipPath>
+                  <clipPath id="hex-middle-right">
+                    <rect
+                      width="161"
+                      height="183"
+                      fill="white"
+                      transform="translate(370, 151)"
+                    />
+                  </clipPath>
+                  <clipPath id="hex-bottom-left">
+                    <rect
+                      width="161"
+                      height="183"
+                      fill="white"
+                      transform="translate(90, 302)"
+                    />
+                  </clipPath>
+                  <clipPath id="hex-bottom-right">
+                    <rect
+                      width="161"
+                      height="183"
+                      fill="white"
+                      transform="translate(275, 302)"
+                    />
+                  </clipPath>
+                  <clipPath id="hex-center">
+                    <rect
+                      width="183"
+                      height="183"
+                      fill="white"
+                      transform="translate(170, 151)"
+                    />
+                  </clipPath>
+                </defs>
+
+                {/* Top Left - Shield centered */}
+                <g clipPath="url(#hex-top-left)">
+                  <path
+                    d="M248.5 135.855L170.5 180.352L92.5 135.855L92.5 46.7991L170.5 2.30225L248.5 46.7991V135.855Z"
+                    fill="rgba(255,255,255,0.05)"
+                    stroke="#E4C19D"
+                    strokeWidth="4"
+                  />
+                  <g transform="translate(125.5, 50.5)">
+                    <Shield size={90} strokeWidth={2} color="#155DFC" />
+                  </g>
+                </g>
+
+                {/* Top Right - Headphones centered */}
+                <g clipPath="url(#hex-top-right)">
+                  <path
+                    d="M433.5 135.855L355.5 180.352L277.5 135.855L277.5 46.7991L355.5 2.30225L433.5 46.7991V135.855Z"
+                    fill="rgba(255,255,255,0.05)"
+                    stroke="#E4C19D"
+                    strokeWidth="4"
+                  />
+                  <g transform="translate(310.5, 50.5)">
+                    <Headphones size={90} strokeWidth={2} color="#E7000B" />
+                  </g>
+                </g>
+
+                {/* Middle Left - Truck centered */}
+                <g clipPath="url(#hex-middle-left)">
+                  <path
+                    d="M158.5 286.855L80.5 331.352L2.5 286.855L2.5 197.8L80.5 153.303L158.5 197.8V286.855Z"
+                    fill="rgba(255,255,255,0.05)"
+                    stroke="#E4C19D"
+                    strokeWidth="4"
+                  />
+                  <g transform="translate(40.5, 200.5)">
+                    <Truck size={90} strokeWidth={2} color="#F54900" />
+                  </g>
+                </g>
+
+                {/* Center - Logo */}
+                <g clipPath="url(#hex-center)">
+                  <foreignObject x="185" y="165" width="153" height="153">
+                    <div className="w-full h-full flex items-center justify-center">
+                      <img
+                        src="/KABA.svg"
+                        alt="KABA Meridian Logo"
+                        className="w-32 h-32 object-contain"
+                      />
+                    </div>
+                  </foreignObject>
+                </g>
+
+                {/* Middle Right - Box centered */}
+                <g clipPath="url(#hex-middle-right)">
+                  <path
+                    d="M528.5 286.855L450.5 331.352L372.5 286.855L372.5 197.8L450.5 153.303L528.5 197.8V286.855Z"
+                    fill="rgba(255,255,255,0.05)"
+                    stroke="#E4C19D"
+                    strokeWidth="4"
+                  />
+                  <g transform="translate(405.5, 200.5)">
+                    <Box size={90} strokeWidth={2} color="#9810FA" />
+                  </g>
+                </g>
+
+                {/* Bottom Left - DollarSign centered */}
+                <g clipPath="url(#hex-bottom-left)">
+                  <path
+                    d="M248.5 437.855L170.5 482.352L92.5 437.855L92.5 348.8L170.5 304.303L248.5 348.8V437.855Z"
+                    fill="rgba(255,255,255,0.05)"
+                    stroke="#E4C19D"
+                    strokeWidth="4"
+                  />
+                  <g transform="translate(125.5, 350.5)">
+                    <DollarSign size={90} strokeWidth={2} color="#00A63E" />
+                  </g>
+                </g>
+
+                {/* Bottom Right - Handshake centered */}
+                <g clipPath="url(#hex-bottom-right)">
+                  <path
+                    d="M433.5 437.855L355.5 482.352L277.5 437.855L277.5 348.8L355.5 304.303L433.5 348.8V437.855Z"
+                    fill="rgba(255,255,255,0.05)"
+                    stroke="#E4C19D"
+                    strokeWidth="4"
+                  />
+                  <g transform="translate(315.5, 350.5)">
+                    <Handshake size={90} strokeWidth={2} color="#05383F" />
+                  </g>
+                </g>
               </svg>
+            </div>
+          </motion.div>
+        </div>
 
-              {/* Main Circle */}
-              <div className="relative z-10 w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56">
-                {/* Outer rings */}
-                <div className="absolute inset-0 rounded-full border-2 border-[#E99A3A] shadow-xl shadow-gray-200/50"></div>
-                <div className="absolute inset-[-6px] rounded-full border border-[#D9D9D9]"></div>
-                <div className="absolute inset-[-12px] rounded-full border border-[#D9D9D9]/50"></div>
+        {/* Bottom Row: 2 rows of 3 cards */}
+        <div className=" grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+          {topRowCards.map((reason, index) => (
+            <InfoCard
+              key={reason.id}
+              icon={reason.icon}
+              title={reason.title}
+              description={reason.description}
+              color={reason.color}
+              delay={0.1 + index * 0.08}
+            />
+          ))}
+        </div>
 
-                {/* Inner white circle */}
-                <div className="absolute inset-[8px] rounded-full bg-white shadow-inner shadow-gray-100 flex items-center justify-center">
-                  <div className="text-center px-3">
-                    <h3 className="text-sm md:text-base lg:text-lg font-bold text-[#222222] uppercase leading-tight tracking-wide">
-                      WHY CHOOSE
-                    </h3>
-                    <h3 className="text-sm md:text-base lg:text-lg font-bold text-[#222222] uppercase leading-tight tracking-wide">
-                      US?
-                    </h3>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Right Nodes */}
-          <div className="flex flex-col gap-6 md:gap-8 w-full md:w-[280px] lg:w-[320px] order-3">
-            {rightNodes.map((node, index) => (
-              <InfoNode
-                key={node.id}
-                icon={node.icon}
-                title={node.title}
-                description={node.description}
-                position={node.position}
-                index={index + 3}
-              />
-            ))}
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+          {bottomRowCards.map((reason, index) => (
+            <InfoCard
+              key={reason.id}
+              icon={reason.icon}
+              title={reason.title}
+              description={reason.description}
+              color={reason.color}
+              delay={0.2 + index * 0.08}
+            />
+          ))}
         </div>
       </div>
-    </Section>
+    </section>
   );
 }
