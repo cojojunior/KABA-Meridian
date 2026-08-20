@@ -18,6 +18,7 @@ export default function MissionVision() {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-8">
+          {/*MISSION STATMENT*/}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -32,20 +33,29 @@ export default function MissionVision() {
                 Our Mission
               </h3>
             </div>
-            <p className="text-primary-600/90 leading-relaxed text-lg text-justify">
-              <span className="font-bold uppercase">
-                <i> Sourcing It Right First As A Standard, not A slogan.</i>
+            <blockquote className="relative border-l-4 border-[#FB923C] pl-4 md:pl-6">
+              <p className="text-primary-600/90 leading-relaxed text-lg text-justify">
+                <span className="font-bold uppercase">
+                  <i> Sourcing It Right First As A Standard, not A slogan.</i>
+                </span>
+              </p>
+            </blockquote>
+            <p className="text-[#000]/90 py-5 leading-relaxed mt-4 text-left sm:text-justify md:text-justify lg:text-justify">
+              <span className="text-4xl text-[#FB923C] font-serif leading-none align-top">
+                "{" "}
               </span>
-            </p>
-            <p className="text-[#000]/90 leading-relaxed mt-4 text-left sm:text-justify md:text-justify lg:text-justify">
               At KB Meridian, we exist for one reason: to make sure the supply
               chain is never the reason an operation stalls. Our purpose is
               sourcing it right, so the industries that build Ghana never have
               to slow down. This is our why, and it shapes every order we
               source, every relationship we build, and every partner we serve.
+              <span className="text-4xl text-[#FB923C] font-serif leading-none align-bottom">
+                {""} "
+              </span>
             </p>
           </motion.div>
 
+          {/*VISION STATMENT*/}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -60,14 +70,19 @@ export default function MissionVision() {
                 Our Vision
               </h3>
             </div>
-            <p className="text-primary-600/90 py-2 uppercase leading-relaxed font-bold text-lg text-justify">
-              <i>
-                {" "}
-                To be Ghana's most trusted household name in industrial
-                sourcing.
-              </i>
-            </p>
-            <p className="text-[#000]/90 leading-relaxed text-lg text-left sm:text-justify md:text-justify lg:text-justify">
+            <blockquote className="relative border-l-4 border-[#FB923C] pl-4 md:pl-6">
+              <p className="text-primary-600/90 py-2 uppercase leading-relaxed font-bold text-lg text-justify">
+                <i>
+                  {" "}
+                  To be Ghana's most trusted household name in industrial
+                  sourcing.
+                </i>
+              </p>
+            </blockquote>
+            <p className="text-[#000]/90 py-5 leading-relaxed text-lg text-left sm:text-justify md:text-justify lg:text-justify">
+              <span className="text-4xl text-[#FB923C] font-serif leading-none align-top">
+                "{" "}
+              </span>
               At Meridian, we make procurement simple. We source industrial
               products, project materials, office supplies, and everyday
               business essentials for companies across Ghana. <br /> From urgent
@@ -75,10 +90,14 @@ export default function MissionVision() {
               right products from reliable suppliers, at competitive prices, and
               delivering them when they're needed. We don't just supply. We
               understand what you need, source it carefully, and see it through.
+              <span className="text-4xl text-[#FB923C] font-serif leading-none align-bottom">
+                {""} "
+              </span>
             </p>
           </motion.div>
         </div>
 
+        {/*COMMIMENT STATMENT*/}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -94,12 +113,14 @@ export default function MissionVision() {
               Our Commitment
             </h3>
           </div>
-          <p className="text-[#000]/90 leading-relaxed ">
-            We understand that every business depends on timely access to
-            quality products. Our commitment is to simplify procurement by
-            providing reliable sourcing, responsive service, and products that
-            meet the highest standards of quality and performance.
-          </p>
+          <blockquote className="relative border-l-4 border-[#FB923C] pl-4 md:pl-6">
+            <p className="text-[#000]/90 leading-relaxed ">
+              We understand that every business depends on timely access to
+              quality products. Our commitment is to simplify procurement by
+              providing reliable sourcing, responsive service, and products that
+              meet the highest standards of quality and performance.
+            </p>
+          </blockquote>
         </motion.div>
       </div>
     </section>
