@@ -64,14 +64,41 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="space-y-6">
-              <h2 className="text-3xl md:text-4xl font-bold text-secondary-900">
-                About <span className="text-accent-400">Us</span>
-              </h2>
+              <h3 className="text-3xl md:text-4xl font-semibold text-accent-400 uppercase flex items-center justify-center">
+                Founder
+              </h3>
+              <p className="text-lg text-secondary-600 leading-relaxed justify-center">
+                Mr. <b className="text-accent-400 font-bold">AKYEA</b> founded{" "}
+                <span className="text-primary-600 font-semibold uppercase">
+                  Kaba Meridian{" "}
+                </span>{" "}
+                to bring together his background in enterprise systems and
+                financial operations with a broader vision for entrepreneurship
+                and wealth building. He brings experience spanning ERP
+                administration, master data management, business analysis, and
+                sourcing across leading enterprise platforms including SAP
+                S/4HANA, SAP Concur, NetSuite, Coupa, and SnapLogic.
+              </p>
 
-              <p className="text-lg text-secondary-600 leading-relaxed">
+              <p className="text-lg text-secondary-600 leading-relaxed justify-center">
+                His professional background includes hands-on work in master
+                data cleanup, e-banking administration, sourcing and procurement
+                support, and cross-functional stakeholder engagement, with prior
+                experience supporting treasury and bank system operations,
+                travel and expense management, and supplier master data
+                initiatives for global organizations.
+              </p>
+
+              <p className="text-lg text-secondary-600 leading-relaxed justify-center">
+                He has led projects spanning process automation and systems
+                integration, working closely with finance, procurement, and IT
+                teams to streamline operations and improve data integrity.
+              </p>
+
+              <p className="text-lg text-secondary-600 leading-relaxed justify-center">
                 At{" "}
                 <span className="font-semibold text-secondary-900">
-                  KB Meridian
+                  Kaba Meridian
                 </span>
                 , we are committed to simplifying industrial procurement for
                 businesses across Ghana. We understand that finding quality
@@ -79,27 +106,16 @@ export default function About() {
                 costly.
               </p>
 
-              <p className="text-lg text-secondary-600 leading-relaxed">
-                We provide reliable procurement solutions for businesses across
-                Ghana by supplying high-quality industrial products at
-                competitive prices.
-              </p>
-
-              <p className="text-lg text-secondary-600 leading-relaxed">
-                That's why we provide a single, dependable source for essential
-                industrial and operational supplies. We serve mining companies,
-                construction firms, manufacturing industries, logistics
-                companies, government institutions, and other commercial
-                organizations.
-              </p>
-
-              <p className="text-lg text-secondary-600 leading-relaxed">
+              <p className="text-lg text-secondary-600 leading-relaxed justify-center">
                 Our goal is to build long-term partnerships based on trust,
                 reliability, and consistent value.
               </p>
 
               <Link to="/contact">
-                <Button variant="primary" size="lg" className="gap-2 mt-4">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  className="gap-2 mt-4 flex items-center justify-center">
                   Get in Touch
                   <ArrowRight className="h-5 w-5" />
                 </Button>
