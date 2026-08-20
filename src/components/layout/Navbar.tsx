@@ -183,8 +183,9 @@ export default function Navbar() {
                         href="tel:+420 771 259 25"
                         className="flex items-center gap-3 text-sm text-secondary-600 hover:text-[#05383f] transition-colors">
                         <Phone className="h-4 w-4" />
-                        +420 771 259 25 <br />
                         +233 27 303 1729
+                        <br />
+                        +233 54 072 4758
                       </a>
                     </div>
                   </div>

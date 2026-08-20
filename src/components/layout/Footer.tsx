@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
-import { FaTwitter, FaLinkedin, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import { FaLinkedin, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { Button } from "@/components/ui/Button";
 
 const quickLinks = [
@@ -52,20 +52,15 @@ export default function Footer() {
                 aria-label="WhatsApp">
                 <FaWhatsapp className="h-5 w-5" />
               </a>
+
               <a
-                href="#"
-                className="text-secondary-400 hover:text-white  transition-colors"
-                aria-label="Twitter">
-                <FaTwitter className="h-5 w-5" />
-              </a>
-              <a
-                href="#"
+                href="https://www.linkedin.com/in/seth-kwame-akyea-ing-194911135"
                 className="text-secondary-400 hover:text-white transition-colors"
                 aria-label="LinkedIn">
                 <FaLinkedin className="h-5 w-5" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/nanaquamy"
                 className="text-secondary-400 hover:text-white transition-colors"
                 aria-label="Instagram">
                 <FaInstagram className="h-5 w-5" />
