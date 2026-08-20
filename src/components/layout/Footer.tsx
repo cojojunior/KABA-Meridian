@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
-import { FaFacebook, FaTwitter, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { FaTwitter, FaLinkedin, FaInstagram, FaWhatsapp } from "react-icons/fa";
 import { Button } from "@/components/ui/Button";
 
 const quickLinks = [
@@ -22,9 +22,10 @@ const productCategories = [
 
 export default function Footer() {
   return (
-    <footer className="bg-secondary-900 text-secondary-300">
+    <footer className="bg-primary-600 text-secondary-300">
       <div className="container-custom py-5 lg:py-10 md:py-10 ">
         <div className="grid grid-cols-2 grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-7 md:gap-15 md:px-9 px-2">
+          {/* bran section*/}
           <div>
             <Link to="/" className="flex items-center gap-3 mb-6">
               <img
@@ -42,28 +43,30 @@ export default function Footer() {
               Your trusted one-stop industrial procurement partner in Ghana. We
               provide reliable sourcing and supply of industrial products.
             </p>
+
+            {/* Quick-link section*/}
             <div className="flex gap-4">
               <a
-                href="#"
-                className="text-secondary-400 hover:text-primary-1 transition-colors"
-                aria-label="Facebook">
-                <FaFacebook className="h-5 w-5" />
+                href="https//wa.me/233273031729"
+                className="text-secondary-400 hover:text-white transition-colors"
+                aria-label="WhatsApp">
+                <FaWhatsapp className="h-5 w-5" />
               </a>
               <a
                 href="#"
-                className="text-secondary-400 hover:text-primary-1  transition-colors"
+                className="text-secondary-400 hover:text-white  transition-colors"
                 aria-label="Twitter">
                 <FaTwitter className="h-5 w-5" />
               </a>
               <a
                 href="#"
-                className="text-secondary-400 hover:text-primary-1 transition-colors"
+                className="text-secondary-400 hover:text-white transition-colors"
                 aria-label="LinkedIn">
                 <FaLinkedin className="h-5 w-5" />
               </a>
               <a
                 href="#"
-                className="text-secondary-400 hover:text-primary-1 transition-colors"
+                className="text-secondary-400 hover:text-white transition-colors"
                 aria-label="Instagram">
                 <FaInstagram className="h-5 w-5" />
               </a>
@@ -71,7 +74,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-accent-300 font-semibold mb-4">Quick Links</h4>
+            <h4 className="text-accent-400 font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2 ">
               {quickLinks.map((link) => (
                 <li key={link.path}>
@@ -86,8 +89,9 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Product section*/}
           <div>
-            <h4 className="text-accent-300 font-semibold mb-4">Our Products</h4>
+            <h4 className="text-accent-400 font-semibold mb-4">Our Products</h4>
             <ul className="space-y-2">
               {productCategories.slice(0, 5).map((product) => (
                 <li key={product}>
@@ -101,37 +105,41 @@ export default function Footer() {
               <li>
                 <Link
                   to="/products"
-                  className="text-[12px] text-primary-1 hover:text-accent-400 transition-colors">
+                  className="text-[12px] text-accent-400 hover:text-accent-400 transition-colors">
                   View All Products →
                 </Link>
               </li>
             </ul>
           </div>
 
+          {/* contact section*/}
           <div>
-            <h4 className="text-accent-300 font-semibold mb-4">Contact Us</h4>
+            <h4 className="text-accent-400 font-semibold mb-4">Contact Us</h4>
             <div className="space-y-4">
-              <div className="flex items-start gap-3 ">
-                <MapPin className="h-5 w-5 text-primary-1 flex-shrink-0 mt-0.5" />
-                <span className="text-sm">Accra, Ghana</span>
+              <div className="flex items-start gap-3">
+                <MapPin className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
+                <span className="text-sm break-words">Accra, Ghana</span>
               </div>
               <div className="flex items-start gap-3">
-                <Phone className="h-5 w-5 text-primary-1 flex-shrink-0" />
-                <div>
-                  <div className="text-sm">+420 771 259 254</div>
-                  <div className="text-sm">+233 27 303 1729</div>
+                <FaWhatsapp className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
+                <div className="text-sm break-words">+233 27 303 1729</div>
+              </div>
+              <div className="flex items-start gap-3">
+                <Phone className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
+                <div className="text-sm break-words">+233 54 072 4758</div>
+              </div>
+              <div className="flex items-start gap-3">
+                <Mail className="h-5 w-5 text-white flex-shrink-0 mt-0.5" />
+                <div className="text-sm break-all md:break-words">
+                  kabameridian@gmail.com
                 </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <Mail className="h-5 w-5 text-primary-1 flex-shrink-0 " />
-                <span className="text-sm">kabameridian@gmail.com</span>
               </div>
             </div>
             <div className="mt-6">
               <Link to="/contact">
                 <Button
                   variant="outline"
-                  className="text-accent-300 border-secondary-600 hover:bg-secondary-800">
+                  className="text-accent-400 border-accent-400 hover:bg-accent-400/10">
                   Get in Touch
                 </Button>
               </Link>
