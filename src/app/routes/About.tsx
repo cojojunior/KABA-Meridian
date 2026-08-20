@@ -49,7 +49,7 @@ export default function About() {
                 {/* Circular Image */}
                 <div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-2xl shadow-[#05383f]/10 border-4 border-[#05383f]/20">
                   <img
-                    src="/CEO2.jpg"
+                    src="/CEO3.jpg"
                     alt="KABA Meridian CEO"
                     className="w-full h-full object-cover"
                   />
