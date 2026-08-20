@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Phone, Mail } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { Button } from "@/components/ui/Button";
 import { useState } from "react";
 
@@ -121,10 +122,10 @@ export default function CTASection() {
             </a>
             <span className="hidden sm:inline text-white/30">|</span>
             <a
-              href="tel:+420 771 259 254"
+              href="https://wa.me/233273031729"
               className="flex items-center gap-2 hover:text-white transition-colors">
-              <Phone className="h-4 w-4 text-accent-300" />
-              +420 771 259 254
+              <FaWhatsapp className="h-5 w-5 text-accent-300 flex-shrink-0 mt-0.5" />
+              <div className="text-sm break-words">+233 27 303 1729</div>
             </a>
           </div>
         </motion.div>

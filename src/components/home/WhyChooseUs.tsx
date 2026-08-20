@@ -86,7 +86,9 @@ const InfoCard = ({
           </div>
         </div>
         <div className="flex-1 min-w-0">
-          <h4 className="text-sm font-bold text-white mb-1 tracking-wider">{title}</h4>
+          <h4 className="text-sm font-bold text-white mb-1 tracking-wider">
+            {title}
+          </h4>
           <p className="text-sm text-white/80 leading-relaxed">{description}</p>
         </div>
       </div>
@@ -125,9 +127,11 @@ export default function WhyChooseUs() {
             className="flex flex-col justify-center">
             <h2 className="text-[#FB923C] text-3xl font-semibold uppercase tracking-[0.7px] mb-2">
               Why Choose Us
-            </h2> <br />
+            </h2>{" "}
+            <br />
             <h3 className="text-white text-3xl md:text-4xl font-bold mb-3">
-              Your Trusted Partner to source it <i className="text-accent-400"> RIGHT  </i>  the First Time
+              Your Trusted Partner to source it{" "}
+              <i className="text-accent-400"> RIGHT </i> the First Time
             </h3>
             <p className="text-white/70 text-lg max-w-lg">
               We deliver quality, reliability, and value to support your
@@ -142,10 +146,8 @@ export default function WhyChooseUs() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="flex justify-center items-center">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-sm w-full max-w-[531px] border border-white/10">
+            <div className="bg-[#000]/30 backdrop-blur-sm rounded-2xl p-4 md:p-6 shadow-sm w-full max-w-[300px] border border-white/10">
               <svg
-                width="531"
-                height="485"
                 viewBox="0 0 531 485"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -296,7 +298,7 @@ export default function WhyChooseUs() {
                     strokeWidth="4"
                   />
                   <g transform="translate(315.5, 350.5)">
-                    <Handshake size={90} strokeWidth={2} color="#05383F" />
+                    <Handshake size={90} strokeWidth={2} color="#fff" />
                   </g>
                 </g>
               </svg>
