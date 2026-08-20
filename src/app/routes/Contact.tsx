@@ -362,12 +362,12 @@ export default function Contact() {
                       <a
                         href="tel:+233201234567"
                         className="text-secondary-600 hover:text-primary-600 transition-colors block">
-                        +233 20 123 4567
+                        +233 27 303 1729
                       </a>
                       <a
                         href="tel:+233241234567"
                         className="text-secondary-600 hover:text-primary-600 transition-colors block">
-                        +233 24 123 4567
+                        +233 54 072 4758
                       </a>
                     </div>
                   </div>
