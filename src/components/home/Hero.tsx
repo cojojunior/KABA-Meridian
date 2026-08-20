@@ -121,13 +121,13 @@ export default function Hero() {
               need—efficiently, reliably, and at competitive prices.
             </p>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap gap-6 grid grid-cols-2 text-sm">
               <Link to="/contact">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   transition={{ duration: 0.2 }}>
-                  <Button variant="accent" size="lg" className="gap-2">
+                  <Button variant="accent" size="lg" className="gap-2 h-18">
                     Request a Quote
                     <ArrowRight className="h-5 w-5" />
                   </Button>
@@ -141,7 +141,7 @@ export default function Hero() {
                   <Button
                     variant="outline"
                     size="lg"
-                    className="text-white border-white/30 hover:bg-white/10">
+                    className="text-white border-white/30 hover:bg-white/10 h-18">
                     About Us
                   </Button>
                 </motion.div>
