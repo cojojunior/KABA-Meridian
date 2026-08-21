@@ -42,7 +42,7 @@ export default function About() {
               transition={{ duration: 0.6 }}
               className="flex justify-center lg:justify-start items-center h-full lg:px-15">
               {/* Circular Image */}
-              <div className="relative w-60 h-64 md:w-80 md:h-85 lg:w-100 lg:h-110 overflow-hidden shadow-2xl shadow-[#05383f]/10 border-2 border-[#05383f]/20">
+              <div className="relative w-40 h-45 md:w-80 md:h-85 lg:w-100 lg:h-110 overflow-hidden shadow-2xl shadow-[#05383f]/10 border-2 border-[#05383f]/20">
                 <img
                   src="/CEO.jpg"
                   alt="KABA Meridian CEO"
