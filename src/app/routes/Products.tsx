@@ -105,7 +105,7 @@ export default function Products() {
         <div className="border-t border-accent-400/50" />
       </Section>
 
-      <Section background="white" className="py-5 px-2 lg:py-5 md:py-5">
+      <Section background="white" className="py-5 px-2 lg:py-5 md:py-5 mb-5">
         <div className="grid md:grid-cols-2 gap-8">
           {products.map((product, index) => (
             <motion.div
