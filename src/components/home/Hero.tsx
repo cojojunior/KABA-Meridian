@@ -82,7 +82,7 @@ export default function Hero() {
             </div>
 
             <motion.div
-              className="flex flex-wrap gap-6 mt-8 pt-8 border-t border-primary-600/50"
+              className="flex flex-wrap gap-6 mt-8 pt-8 border-t border-accent-400/50"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.3 }}>
