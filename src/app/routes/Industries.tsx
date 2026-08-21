@@ -51,7 +51,7 @@ export default function Industries() {
     <>
       <Section
         spacing="xl"
-        className="py-10 px-2 lg:py-20 md:py-20 bg-primary-600/10 text-primary-600">
+        className="py-5 px-2 lg:py-10 md:py-10  text-primary-600 ">
         <div className="text-center max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -60,15 +60,16 @@ export default function Industries() {
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Industries We Serve
             </h1>
-            <p className="text-xl text-primary-600/80 leading-relaxed">
+            <p className="text-xl text-primary-600/80 leading-relaxed mb-4">
               Trusted procurement partner for businesses across multiple
               sectors.
             </p>
           </motion.div>
         </div>
+        <div className="border-t border-accent-400/50" />
       </Section>
 
-      <Section background="white" className="py-10 px-2 lg:py-5 md:py-10">
+      <Section background="white" className="py-5 px-2 lg:py-2 md:py-5 mb-6">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {industries.map((industry, index) => (
             <motion.div

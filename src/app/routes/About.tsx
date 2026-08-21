@@ -30,45 +30,44 @@ const values = [
 export default function About() {
   return (
     <>
-      {/* Row 1: CEO Image (Left) + Content (Right) */}
-      <section className="py-10 md:py-10 lg:py-10 bg-white">
+      {/* Row 1: 2 Columns - Image Left + 3 Paragraphs Right (Equal Heights) */}
+      <section className="py-6 md:py-10 lg:py-10 bg-white">
         <div className="container-custom max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Left: CEO Image - Circular */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
+            {/* Left: CEO Image - Circular - Full Height */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="flex justify-center lg:justify-start">
-              <div className="relative">
-                {/* Decorative ring */}
-                <div className="absolute -inset-4 rounded-full border-2 border-[#05383f]/10 animate-pulse-slow" />
-                <div className="absolute -inset-8 rounded-full border border-[#05383f]/5" />
-
-                {/* Circular Image */}
-                <div className="w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden shadow-2xl shadow-[#05383f]/10 border-4 border-[#05383f]/20">
-                  <img
-                    src="/CEO.jpg"
-                    alt="KABA Meridian CEO"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+              className="flex justify-center lg:justify-start items-center h-full lg:px-15">
+              {/* Circular Image */}
+              <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-100 lg:h-110 overflow-hidden shadow-2xl shadow-[#05383f]/10 border-2 border-[#05383f]/20">
+                <img
+                  src="/CEO.jpg"
+                  alt="KABA Meridian CEO"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </motion.div>
 
-            {/* Right: Content */}
+            {/* Right: Content - 3 Paragraphs with Equal Height */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="space-y-6">
-              <h3 className="text-3xl md:text-4xl font-semibold text-accent-400 uppercase flex items-center justify-center">
-                Founder
+              className="flex flex-col justify-center h-full space-y-2">
+              <h3 className="text-3xl md:text-4xl font-bold text-primary-600 uppercase flex items-center justify-center lg:items-center">
+                C.E.O
               </h3>
-              <p className="text-lg text-secondary-600 leading-relaxed justify-center">
-                Mr. <b className="text-accent-400 font-bold">AKYEA</b> founded{" "}
+
+              <p className="text-lg text-secondary-600 leading-relaxed">
+                Mr.{" "}
+                <b className="text-accent-400 font-bold tracking-[0.1rem]">
+                  AKYEA SETH KWAME</b>
+                {" "}
+                founded{" "}
                 <span className="text-primary-600 font-semibold uppercase">
                   Kaba Meridian{" "}
                 </span>{" "}
@@ -80,7 +79,7 @@ export default function About() {
                 S/4HANA, SAP Concur, NetSuite, Coupa, and SnapLogic.
               </p>
 
-              <p className="text-lg text-secondary-600 leading-relaxed justify-center">
+              <p className="text-lg text-secondary-600 leading-relaxed">
                 His professional background includes hands-on work in master
                 data cleanup, e-banking administration, sourcing and procurement
                 support, and cross-functional stakeholder engagement, with prior
@@ -88,44 +87,50 @@ export default function About() {
                 travel and expense management, and supplier master data
                 initiatives for global organizations.
               </p>
-
-              <p className="text-lg text-secondary-600 leading-relaxed justify-center">
-                He has led projects spanning process automation and systems
-                integration, working closely with finance, procurement, and IT
-                teams to streamline operations and improve data integrity.
-              </p>
-
-              <p className="text-lg text-secondary-600 leading-relaxed justify-center">
-                At{" "}
-                <span className="font-semibold text-secondary-900">
-                  Kaba Meridian
-                </span>
-                , we are committed to simplifying industrial procurement for
-                businesses across Ghana. We understand that finding quality
-                products from reliable suppliers can be time-consuming and
-                costly.
-              </p>
-
-              <p className="text-lg text-secondary-600 leading-relaxed justify-center">
-                Our goal is to build long-term partnerships based on trust,
-                reliability, and consistent value.
-              </p>
-
-              <Link to="/contact">
-                <Button
-                  variant="primary"
-                  size="lg"
-                  className="gap-2 mt-4 flex items-center justify-center">
-                  Get in Touch
-                  <ArrowRight className="h-5 w-5" />
-                </Button>
-              </Link>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Row 2: Values Cards - 4 columns */}
+      {/* Row 2: 1 Column - Full Width - Remaining 2 Paragraphs */}
+      <section className="py-3 md:py-5 lg:py-5 bg-white">
+        <div className="container-custom max-w-7xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="max-w-4xl mx-auto space-y-4">
+            <p className="text-lg text-secondary-600 leading-relaxed">
+              He has led projects spanning process automation and systems
+              integration, working closely with finance, procurement, and IT
+              teams to streamline operations and improve data integrity.
+            </p>
+            <p className="text-lg text-primariy-600 leading-relaxed">
+              At <span className="font-bold uppercase">Kaba Meridian</span>, we
+              are committed to simplifying industrial procurement for businesses
+              across Ghana. We understand that finding quality products from
+              reliable suppliers can be time-consuming and costly.
+            </p>
+
+            <p className="text-lg text-secondary-600 leading-relaxed">
+              Our goal is to build long-term partnerships based on trust,
+              reliability, and consistent value.
+            </p>
+
+            <div className="flex justify-center mt-6">
+              <Link to="/contact">
+                <Button variant="primary" size="lg" className="gap-2">
+                  Get in Touch
+                  <ArrowRight className="h-5 w-5" />
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Row 3: Values Cards - 4 columns */}
       <section className="py-12 md:py-16 lg:py-20 bg-secondary-50">
         <div className="container-custom max-w-7xl mx-auto px-4">
           <motion.div
@@ -173,8 +178,8 @@ export default function About() {
         </div>
       </section>
 
-      {/* Row 3: CTA Section */}
-      <section className="py-12 md:py-16 lg:py-20 bg-primary-600 relative overflow-hidden">
+      {/* Row 4: CTA Section */}
+      <section className="py-12 md:py-16 lg:py-20 bg- relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 opacity-10">
           <div
@@ -198,10 +203,10 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              <h2 className="text-3xl md:text-4xl font-bold text-primary-600 mb-4">
                 Ready to Work With Us?
               </h2>
-              <p className="text-lg text-white/80 mb-8">
+              <p className="text-lg text-primary-600/80 mb-8">
                 Let's discuss how we can support your industrial procurement
                 needs.
               </p>

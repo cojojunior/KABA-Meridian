@@ -88,7 +88,7 @@ export default function Products() {
     <>
       <Section
         spacing="xl"
-        className="py-10 px-2 lg:py-15 md:py-15 text-primary-600 bg-primary-600/10">
+        className="py-5 px-2 lg:py-5 md:py-5 text-primary-600 bg-white">
         <div className="text-center max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -97,14 +97,15 @@ export default function Products() {
             <h1 className="text-4xl md:text-5xl font-bold  mb-4">
               Our Products
             </h1>
-            <p className="text-xl text-primary-600/80 leading-relaxed">
+            <p className="text-xl text-primary-600/80 leading-relaxed mb-4">
               Comprehensive industrial supply solutions for your business needs.
             </p>
           </motion.div>
         </div>
+        <div className="border-t border-accent-400/50" />
       </Section>
 
-      <Section background="white" className="py-15 px-2 lg:py-15 md:py-15">
+      <Section background="white" className="py-5 px-2 lg:py-5 md:py-5">
         <div className="grid md:grid-cols-2 gap-8">
           {products.map((product, index) => (
             <motion.div
