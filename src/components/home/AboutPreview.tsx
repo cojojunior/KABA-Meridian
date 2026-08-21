@@ -59,12 +59,8 @@ export default function AboutPreview() {
             transition={{ duration: 0.6 }}>
             {/* Main Heading with Meridian in Corsiva */}
             <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4  leading-tight">
-              Your trusted one-stop{" "}
-              <span className="block md:inline">industrial procurement</span>{" "}
-              <span className="block md:inline">
-                partner in{" "}
-                <span className="font-corsiva text-primary-1">Ghana</span>
-              </span>
+              SOURCE IT RIGHT{" "}
+              <span className="block md:inline">SUPPLY CHAIN SOLVED</span>{" "}
             </h3>
 
             <p className="text-lg text-white/90 leading-relaxed mb-6">

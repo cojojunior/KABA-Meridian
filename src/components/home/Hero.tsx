@@ -1,11 +1,10 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Shield, Truck, Clock, CheckCircle } from "lucide-react";
+import { ArrowRight, Truck, Clock, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useState, useEffect } from "react";
 
 export default function Hero() {
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
   const [isDesktopOrTablet, setIsDesktopOrTablet] = useState(false);
 
@@ -37,65 +36,7 @@ export default function Hero() {
   }, [isDesktopOrTablet]);
 
   return (
-    <section className="relative min-h-[90vh] lg:min-h-[40vh] py-3 px-2 lg:py-5 flex items-center overflow-hidden">
-      {/* Background Video Container */}
-      <div className="absolute inset-0 w-full h-full overflow-hidden">
-        <div className="absolute inset-0 flex items-center justify-center">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            className={`min-w-full min-h-full object-cover transition-opacity duration-1000 ${
-              isVideoLoaded ? "opacity-100" : "opacity-0"
-            }`}
-            style={{
-              filter: "brightness(0.35) saturate(0.5) contrast(1.1)",
-              width: "auto",
-              height: "100%",
-              maxWidth: "none",
-            }}
-            onLoadedData={() => setIsVideoLoaded(true)}>
-            <source src="/herovideo.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-
-        {!isVideoLoaded && (
-          <div className="absolute inset-0 bg-gradient-to-br from-[#05383f] to-[#0f172a]" />
-        )}
-      </div>
-
-      {/* Overlay Layers */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#05383f]/75 to-[#0f172a]/55" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30" />
-
-      <div className="absolute inset-0 opacity-10">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(circle at 20% 50%, rgba(5, 56, 63, 0.5) 0%, transparent 60%)`,
-          }}
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage: `radial-gradient(circle at 80% 50%, rgba(5, 56, 63, 0.4) 0%, transparent 60%)`,
-          }}
-        />
-      </div>
-
-      <div className="absolute inset-0 opacity-30">
-        <div
-          className="absolute inset-0 animate-pulse-slow"
-          style={{
-            background:
-              "radial-gradient(circle at 50% 50%, rgba(5, 56, 63, 0.3) 0%, transparent 70%)",
-          }}
-        />
-      </div>
-
+    <section className="relative min-h-[60vh] lg:min-h-[40vh] py-1 px-2 lg:py-5 flex items-center bg-white">
       {/* Content */}
       <div className="container-custom relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -103,22 +44,14 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}>
-            <motion.div
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white/90 text-sm mb-6 border border-white/10"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}>
-              <Shield className="h-4 w-4 text-accent-400" />
-              <span>Trusted Industrial Procurement Partner</span>
-            </motion.div>
-
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-              One-Stop Industrial{" "}
-              <span className="text-accent-400">Procurement Partner</span>
-            </h1>
-
-            <p className="text-lg text-white/90 leading-relaxed mb-8 max-w-xl">
-              We help businesses source the industrial products they
-              need—efficiently, reliably, and at competitive prices.
+            <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold text-primary-600 leading-tight mb-1">
+              SOURCE IT RIGHT,{" "}
+              <span className="text-accent-400 lg:text-4xl">
+                SUPPLY CHAIN SOLVED
+              </span>
+            </h2>
+            <p className="font-semibold mb-4">
+              Your trusted partner to Source it right the first time
             </p>
 
             <div className="flex flex-wrap gap-6 grid grid-cols-2 text-sm">
@@ -141,7 +74,7 @@ export default function Hero() {
                   <Button
                     variant="outline"
                     size="lg"
-                    className="text-white border-white/30 hover:bg-white/10 h-18">
+                    className="text-primary-600 border-accent-400/40 hover:bg-white/10 h-18">
                     About Us
                   </Button>
                 </motion.div>
@@ -149,7 +82,7 @@ export default function Hero() {
             </div>
 
             <motion.div
-              className="flex flex-wrap gap-6 mt-8 pt-8 border-t border-white/50"
+              className="flex flex-wrap gap-6 mt-8 pt-8 border-t border-primary-600/50"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.3 }}>
@@ -160,7 +93,7 @@ export default function Hero() {
               ].map((item, index) => (
                 <motion.div
                   key={index}
-                  className="flex items-center gap-2 text-white/80"
+                  className="flex items-center gap-2 text-primary-600/80 font-semibold"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}>
@@ -171,36 +104,28 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
+          {/* KABA SVG Logo - Hidden on mobile, shown on tablet and desktop */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="grid grid-cols-2 gap-4">
-            {[
-              { value: "98%", label: "On-Time Delivery" },
-              { value: "24/7", label: "Customer Support" },
-            ].map((stat, index) => (
-              <motion.div
-                key={index}
-                className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/10 hover:bg-white/20 transition-all duration-300"
-                whileHover={{
-                  scale: 1.05,
-                  y: -5,
-                  boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
-                }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}>
-                <motion.div
-                  className="text-3xl font-bold text-white mb-1"
-                  initial={{ scale: 0.5 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}>
-                  {stat.value}
-                </motion.div>
-                <div className="text-white/70 text-sm">{stat.label}</div>
-              </motion.div>
-            ))}
+            className="hidden md:flex items-center justify-center">
+            <motion.div
+              className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20"
+              whileHover={{
+                scale: 1.05,
+                y: -5,
+                boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+              }}
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.3 }}>
+              <img
+                src="/KABA.svg"
+                alt="KABA Meridian Logo"
+                className="w-45 h-45 md:w-60 md:h-60 object-contain"
+              />
+            </motion.div>
           </motion.div>
         </div>
       </div>
@@ -243,12 +168,6 @@ export default function Hero() {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Video Ambient Glow Effect */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-[#05383f]/20 blur-3xl rounded-full" />
-        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-[#0f172a]/20 blur-3xl rounded-full" />
-      </div>
     </section>
   );
 }

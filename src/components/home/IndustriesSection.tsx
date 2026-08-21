@@ -25,16 +25,7 @@ const industries = [
     name: "Logistics",
     color: "border-primary-50",
   },
-  {
-    image: "/warehouse.jpg",
-    name: "Warehousing",
-    color: "border-primary-50",
-  },
-  {
-    image: "/government.jpg",
-    name: "Government Institutions",
-    color: "border-primary-50",
-  },
+  
 ];
 
 export default function IndustriesSection() {
@@ -53,7 +44,7 @@ export default function IndustriesSection() {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {industries.map((industry, index) => (
           <motion.div
             key={index}
