@@ -40,18 +40,14 @@ export default function MissionVision() {
                 </span>
               </p>
             </blockquote>
-            <p className="text-[#000]/90 py-5 leading-relaxed mt-4 text-left sm:text-justify md:text-justify lg:text-justify">
-              <span className="text-4xl text-[#FB923C] font-serif leading-none align-top">
-                "{" "}
-              </span>
+            <p className="text-[#000]/90 py-5 leading-relaxed mt-4 text-left sm:text-left text-justify lg:text-justify">
+            
               At KB Meridian, we exist for one reason: to make sure the supply
               chain is never the reason an operation stalls. Our purpose is
               sourcing it right, so the industries that build Ghana never have
               to slow down. This is our why, and it shapes every order we
               source, every relationship we build, and every partner we serve.
-              <span className="text-4xl text-[#FB923C] font-serif leading-none align-bottom">
-                {""} "
-              </span>
+              
             </p>
           </motion.div>
 
@@ -79,10 +75,8 @@ export default function MissionVision() {
                 </i>
               </p>
             </blockquote>
-            <p className="text-[#000]/90 py-5 leading-relaxed text-lg text-left sm:text-justify md:text-justify lg:text-justify">
-              <span className="text-4xl text-[#FB923C] font-serif leading-none align-top">
-                "{" "}
-              </span>
+            <p className="text-[#000]/90 py-5 leading-relaxed text-lg text-left sm:text-left ext-justify lg:text-justify">
+              
               At Meridian, we make procurement simple. We source industrial
               products, project materials, office supplies, and everyday
               business essentials for companies across Ghana. <br /> From urgent
@@ -90,9 +84,7 @@ export default function MissionVision() {
               right products from reliable suppliers, at competitive prices, and
               delivering them when they're needed. We don't just supply. We
               understand what you need, source it carefully, and see it through.
-              <span className="text-4xl text-[#FB923C] font-serif leading-none align-bottom">
-                {""} "
-              </span>
+             
             </p>
           </motion.div>
         </div>
