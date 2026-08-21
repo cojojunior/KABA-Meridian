@@ -127,9 +127,7 @@ export default function Contact() {
 
   return (
     <>
-      <Section
-        spacing="xl"
-        className="bg-primary-600/10 py-5 px-2 lg:py-15 text-primary-600">
+      <Section spacing="xl" className="py-5 px-2 lg:py-10 text-primary-600">
         <div className="text-center max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -138,10 +136,11 @@ export default function Contact() {
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
               Request a Quote
             </h1>
-            <p className="text-xl leading-relaxed">
+            <p className="text-xl leading-relaxed mb-5">
               Get a competitive quotation for your industrial procurement needs.
             </p>
           </motion.div>
+          <div className="border-t border-accent-400/50" />
         </div>
       </Section>
 
